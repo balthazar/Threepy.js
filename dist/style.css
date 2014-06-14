@@ -14,12 +14,16 @@ html, body {
 }
 
 /* line 14, ../scss/style.scss */
-html, body, div, canvas {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+input, select, textarea, button, i {
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* line 18, ../scss/style.scss */
+body {
+  padding-top: 25px;
 }
 
 /* line 22, ../scss/style.scss */
