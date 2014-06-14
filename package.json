@@ -20,7 +20,7 @@
 		"nodewebkit": "^0.8.6-3"
 	},
 	"window"         : {
-		"frame"  : true,
+		"frame"  : false,
 		"toolbar": true
 	}
 }

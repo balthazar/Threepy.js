@@ -6,10 +6,34 @@
 
 		<script src="dist/babylon.js" type="text/javascript"></script>
 		<script src="dist/app.min.js" type="text/javascript"></script>
+		<script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
+		<script>
+			angular.module('zabylonApp', [])
+				.controller('zabylonCtrl', function ($scope) {
+
+				$scope.minimize = function () {
+					win.minimize();
+				};
+
+				$scope.toggleFull = function () {
+					win.toggleFullscreen();
+				};
+
+				$scope.quit = function () {
+					gui.App.quit();
+				};
+
+			});
+		</script>
 
 	</head>
-	<body>
+	<body ng-app="zabylonApp" ng-controller="zabylonCtrl">
 		<nav class="drag">
+			<span>
+				<a class="hide nodrag" ng-click="minimize()"></a>
+				<a class="resize nodrag" ng-click="toggleFull()"></a>
+				<a class="close nodrag" ng-click="quit()"></a>
+			</span>
 		</nav>
 	</body>
 </html>
