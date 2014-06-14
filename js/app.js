@@ -1,3 +1,9 @@
+global.BABYLON = BABYLON;
+
 var net = require('net');
 var gui = require('nw.gui');
-global.BABYLON = BABYLON;
+var win = gui.Window.get();
+
+win.title = "Zabylon";
+
+win.openDevTools();

@@ -8,7 +8,7 @@
 
 html, body {
 	background-color: #000000;
-	@include user-select(none);
+	//@include user-select(none);
 }
 
 html, body, div, canvas {
@@ -43,31 +43,39 @@ nav {
 	a {
 		z-index: 2000;
 		content: '';
-		border: 0px solid #000;
-		background-color: #AAA;
+		border: 0;
+		background-color: rgba(gray, .7);
 		padding: 0;
-		width: 14px;
-		height: 14px;
+		width: 10px;
+		height: 10px;
 		line-height: 3px;
 		top: 8px;
 		right: 8px;
-		font-size: xx-small;
 		overflow: hidden;
 		position: absolute;
-		border-radius: 7px;
+		cursor: pointer;
+		@include border-radius(50%);
 		@include transition(background-color .3s);
 		color: #CCC;
 		opacity: 0.6;
-		&:hover {
-			&.close {
-				background-color: #b00f0f;
-			}
-			&.resize{
-				background-color: #0fb00f;
-			}
-			&.hide {
+		&.hide {
+			right: 32px	;
+			&:hover {
 				background-color: #d0a00f;
 			}
+		}
+		&.resize {
+			right: 20px;
+			&:hover {
+				background-color: #0fb00f;
+			}
+		}
+		&.close {
+			&:hover {
+				background-color: #b00f0f;
+			}
+		}
+		&:hover {
 			opacity: 1.0;
 		}
 	}

@@ -7,10 +7,6 @@
 /* line 9, ../scss/style.scss */
 html, body {
   background-color: #000000;
-  -moz-user-select: -moz-none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 /* line 14, ../scss/style.scss */
@@ -55,18 +51,20 @@ nav:hover {
 nav a {
   z-index: 2000;
   content: '';
-  border: 0px solid #000;
-  background-color: #AAA;
+  border: 0;
+  background-color: rgba(128, 128, 128, 0.7);
   padding: 0;
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   line-height: 3px;
   top: 8px;
   right: 8px;
-  font-size: xx-small;
   overflow: hidden;
   position: absolute;
-  border-radius: 7px;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
   -moz-transition: background-color 0.3s;
   -o-transition: background-color 0.3s;
   -webkit-transition: background-color 0.3s;
@@ -75,18 +73,26 @@ nav a {
   opacity: 0.6;
 }
 /* line 61, ../scss/style.scss */
-nav a:hover {
-  opacity: 1.0;
+nav a.hide {
+  right: 32px;
 }
-/* line 62, ../scss/style.scss */
-nav a:hover.close {
-  background-color: #b00f0f;
+/* line 63, ../scss/style.scss */
+nav a.hide:hover {
+  background-color: #d0a00f;
 }
-/* line 65, ../scss/style.scss */
-nav a:hover.resize {
+/* line 67, ../scss/style.scss */
+nav a.resize {
+  right: 20px;
+}
+/* line 69, ../scss/style.scss */
+nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 68, ../scss/style.scss */
-nav a:hover.hide {
-  background-color: #d0a00f;
+/* line 74, ../scss/style.scss */
+nav a.close:hover {
+  background-color: #b00f0f;
+}
+/* line 78, ../scss/style.scss */
+nav a:hover {
+  opacity: 1.0;
 }
