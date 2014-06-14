@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 			},
 			js     : {
 				files: ['js/*.js', 'js/**/*.js'],
-				tasks: ['uglify']
+				tasks: ['copy']
 			},
 			options: {
 				livereload: true
@@ -35,6 +35,11 @@ module.exports = function (grunt) {
 		},
 		jshint    : {
 			all: ['Gruntfile.js', 'js/**/*.js']
+		},
+		copy      : {
+			main: {
+				files: [ { expand: true, src: ['js/**/*'], dest: 'dist/' } ]
+			}
 		},
 		uglify    : {
 			options: {

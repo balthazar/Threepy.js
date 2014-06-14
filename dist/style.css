@@ -6,6 +6,7 @@
 
 /* line 9, ../scss/style.scss */
 html, body {
+  height: 100%;
   background-color: #000000;
   -moz-user-select: -moz-none;
   -ms-user-select: none;
@@ -13,7 +14,7 @@ html, body {
   user-select: none;
 }
 
-/* line 14, ../scss/style.scss */
+/* line 15, ../scss/style.scss */
 input, select, textarea, button, i {
   -moz-user-select: text;
   -ms-user-select: text;
@@ -21,22 +22,32 @@ input, select, textarea, button, i {
   user-select: text;
 }
 
-/* line 18, ../scss/style.scss */
+/* line 19, ../scss/style.scss */
 body {
+  margin: 0;
   padding-top: 25px;
+  height: 100%;
+}
+/* line 23, ../scss/style.scss */
+body > section {
+  height: 100%;
+}
+/* line 25, ../scss/style.scss */
+body > section canvas {
+  height: 100%;
 }
 
-/* line 22, ../scss/style.scss */
+/* line 31, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 26, ../scss/style.scss */
+/* line 35, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
-/* line 30, ../scss/style.scss */
+/* line 39, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -51,11 +62,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 40, ../scss/style.scss */
+/* line 49, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 43, ../scss/style.scss */
+/* line 52, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -80,27 +91,27 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 61, ../scss/style.scss */
+/* line 70, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 63, ../scss/style.scss */
+/* line 72, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 67, ../scss/style.scss */
+/* line 76, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 69, ../scss/style.scss */
+/* line 78, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 74, ../scss/style.scss */
+/* line 83, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 78, ../scss/style.scss */
+/* line 87, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }
