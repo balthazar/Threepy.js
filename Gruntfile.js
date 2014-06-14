@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 		},
 		watch     : {
 			css    : {
-				files: ['css/**/*.scss', 'css/*.scss'],
+				files: ['scss/**/*.scss', 'scss/*.scss'],
 				tasks: ['compass']
 			},
 			js     : {
@@ -24,11 +24,12 @@ module.exports = function (grunt) {
 		},
 		nodewebkit: {
 			options: {
-				build_dir: './build',
-				mac      : true,
-				win      : false,
-				linux32  : false,
-				linux64  : false
+				build_dir     : './build',
+				//force_download: true,
+				mac           : true,
+				win           : false,
+				linux32       : false,
+				linux64       : false
 			},
 			src    : ['./**/*' ]
 		},
