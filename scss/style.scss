@@ -7,7 +7,9 @@
 }
 
 html, body {
+	overflow: hidden;
 	height: 100%;
+	width: 100%;
 	background-color: #000000;
 	@include user-select(none);
 }
@@ -18,12 +20,16 @@ input, select, textarea, button, i {
 
 body {
 	margin: 0;
-	padding-top: 25px;
-	height: 100%;
+	> nav {
+		position: fixed;
+	}
 	> section {
 		height: 100%;
 		canvas {
 			height: 100%;
+		}
+		form {
+			margin-top: 25px;
 		}
 	}
 }
@@ -44,7 +50,7 @@ nav {
 	right: 0;
 	height: 25px;
 	opacity: 0.6;
-	background: -webkit-gradient(linear, left top, left 25, from(rgba(white, .2)), to(rgba(white, 0)));
+	background: -webkit-gradient(linear, left top, left 25, from(rgba(black, .2)), to(rgba(white, 0)));
 	@include transition(all .3s);
 	&:hover {
 		opacity: 1.0;
