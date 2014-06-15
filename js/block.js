@@ -15,17 +15,19 @@ module.exports = function Block(map, x, y) {
 	};
 
 	function initBlock() {
-		self.mesh = BABYLON.Mesh.CreateBox('Block', 0.9, game.scene);
-		self.mesh.position = new BABYLON.Vector3(self.center.x, 0, self.center.y);
-		self.mesh.scaling.y = 2;
-
-		console.log(self.center);
+		var geometry = new THREE.BoxGeometry(1, 1, 1);
+		var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+		self.mesh = new THREE.Mesh(geometry, material);
+		game.scene.add(self.mesh, self.center.x, 0, self.center.y);
+		self.mesh.position.x = self.center.x + (0.5 * x);
+		self.mesh.position.y = self.center.y + (0.5 * y);
 
 		self.mesh.onclick = function (e, object) {
 			console.log(e);
 			console.log(object);
 			console.log(this);
 		};
+
 	}
 	initBlock();
 };

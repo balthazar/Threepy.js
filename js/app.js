@@ -1,4 +1,4 @@
-global.BABYLON = BABYLON;
+global.THREE = THREE;
 global.document = document;
 
 var net = require('net');

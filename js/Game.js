@@ -3,34 +3,35 @@ var Map = require('./map.js');
 module.exports = function Game() {
 
 	var self = this;
-
-	var canvas = document.querySelector('canvas');
-	var engine = new BABYLON.Engine(canvas, true);
-	var scene = new BABYLON.Scene(engine);
-	var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
 	var window = global.window;
 
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 	this.scene = scene;
-	this.engine = engine;
 	this.map = null;
 
-	scene.activeCamera.attachControl(canvas);
-	//self.camera2 = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 1, -15), scene);
+	document.body.appendChild(renderer.domElement);
+
+	camera.position.z = 5;
+	camera.position.x = 5;
+	camera.position.y = 5;
 
 	this.createMap = function (width, height) {
-		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), scene);
-		//var mesh = BABYLON.Mesh.CreateBox('Block', 0.9, scene);
 		self.map = new Map(self, width, height);
-		console.log(self.scene);
 	};
 
 	this.run = function () {
-		engine.runRenderLoop(function () {
-			scene.render();
-		});
+		render();
 	};
 
-	window.onresize = function () {
-		engine.resize();
+	var render = function () {
+
+		window.requestAnimationFrame(render);
+		renderer.render(scene, camera);
 	};
 };
