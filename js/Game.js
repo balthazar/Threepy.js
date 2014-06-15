@@ -68,7 +68,8 @@ module.exports = function Game() {
 		var intersects = raycaster.intersectObjects(self.objects);
 
 		if (intersects.length > 0) {
-			console.log(intersects[0].object);
+			console.log(intersects[0]);
+			console.log(self.map.getBlock(intersects[0].object.coords.y, intersects[0].object.coords.x));
 			intersects[0].object.material.color.setHex(Math.random());
 		}
 	};

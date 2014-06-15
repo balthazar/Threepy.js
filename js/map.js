@@ -18,4 +18,8 @@ module.exports = function Map(game, width, height) {
 		}
 	};
 	initMap();
+
+	this.getBlock = function (x, y) {
+		return self.blocks[y][x];
+	};
 };

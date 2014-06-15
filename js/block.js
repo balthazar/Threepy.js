@@ -19,6 +19,10 @@ module.exports = function Block(map, x, y) {
 		var material = new THREE.MeshPhongMaterial({color: 0x0000ff});
 		self.mesh = new THREE.Mesh(geometry, material);
 		game.scene.add(self.mesh);
+		self.mesh.coords = {
+			x: x,
+			y: y
+		};
 		game.objects.push(self.mesh);
 		self.mesh.position.x = self.center.x + (0.1 * x);
 		self.mesh.position.y = self.center.y + (0.1 * y);
