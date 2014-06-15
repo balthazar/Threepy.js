@@ -10,8 +10,6 @@ win.title = "Zabylon";
 win.width = 1640;
 win.height = 900;
 
-var game = new Game();
-
 var client = new net.Socket();
 
 client.on('data', function (data) {
@@ -40,6 +38,7 @@ angular.module('zabylonApp', [])
 			$scope.ui.connected = true;
 			$timeout(function () {
 
+				var game = new Game();
 				game.init();
 				game.createMap(10, 10);
 				//game.run();

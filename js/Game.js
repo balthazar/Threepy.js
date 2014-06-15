@@ -17,23 +17,23 @@ module.exports = function Game() {
 	this.init = function () {
 
 		canvas = document.querySelector('canvas');
-		engine = new BABYLON.Engine(canvas, true);
-		scene = new BABYLON.Scene(engine);
-		camera = new BABYLON.ArcRotateCamera('Camera', 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
+		self.engine = new BABYLON.Engine(canvas, true);
+		self.scene = new BABYLON.Scene(self.engine);
+		self.camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), self.scene);
+		//self.camera2 = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 1, -15), scene);
 
-		scene.activeCamera.attachControl(canvas);
+		self.scene.activeCamera.attachControl(canvas);
 	};
 
 	this.createMap = function (width, height) {
-		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), scene);
-		var origin = BABYLON.Mesh.CreateSphere('origin', 10, 1.0, scene);
-		//this.map = new Map(self, width, height);
+		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), self.scene);
+		this.map = new Map(self, width, height);
 		this.run();
 	};
 
 	this.run = function () {
-		engine.runRenderLoop(function () {
-			scene.render();
+		self.engine.runRenderLoop(function () {
+			self.scene.render();
 		});
 	};
 
