@@ -1,11 +1,14 @@
 global.BABYLON = BABYLON;
+global.document = document;
 
 var net = require('net');
 var gui = require('nw.gui');
 var win = gui.Window.get();
+win.title = "Zabylon";
 var Game = require('./dist/js/game.js');
 
-win.title = "Zabylon";
+var game = new Game();
+
 
 var client = new net.Socket();
 
@@ -35,15 +38,14 @@ angular.module('zabylonApp', [])
 			$scope.ui.connected = true;
 			$timeout(function () {
 
-				Game.init();
-				var camera = new BABYLON.ArcRotateCamera('Camera', 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
-				var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), scene);
-				var origin = BABYLON.Mesh.CreateSphere('origin', 10, 1.0, scene);
+				game.init();
+				var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), game.scene);
+				var origin = BABYLON.Mesh.CreateSphere('origin', 10, 1.0, game.scene);
 
-				scene.activeCamera.attachControl(canvas);
+				game.scene.activeCamera.attachControl(game.canvas);
 
-				engine.runRenderLoop(function () {
-					scene.render();
+				game.engine.runRenderLoop(function () {
+					game.scene.render();
 				});
 
 			});
