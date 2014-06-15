@@ -10,8 +10,8 @@ module.exports = function Block(map, x, y) {
 	this.mesh = null;
 
 	this.center = {
-		x: this.x - (map.width / 2),
-		y: this.y - (map.height / 2)
+		x: this.x,
+		y: this.y
 	};
 
 	function initBlock() {

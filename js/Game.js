@@ -12,8 +12,11 @@ module.exports = function Game() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-	camera.position.z = 5;
+	var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+	camera.position.z = 10;
+
+	//custom controls
+	controls = new THREE.OrbitControls(camera);
 
 	// lights
 	var light = new THREE.PointLight(0xffffff, 100, 100);
@@ -26,9 +29,6 @@ module.exports = function Game() {
 	var directionalLight = new THREE.DirectionalLight(0xffffff, 10);
 	directionalLight.position.set(0, 0, 100).normalize();
 	scene.add(directionalLight);
-
-	//custom controls
-	controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 	document.body.appendChild(renderer.domElement);
 
@@ -68,6 +68,7 @@ module.exports = function Game() {
 		var intersects = raycaster.intersectObjects(self.objects);
 
 		if (intersects.length > 0) {
+			console.log(intersects[0].object);
 			intersects[0].object.material.color.setHex(Math.random());
 		}
 	};

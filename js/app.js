@@ -11,9 +11,16 @@ win.width = 1640;
 win.height = 900;
 
 var client = new net.Socket();
+var game;
 
 client.on('data', function (data) {
 	var res = data.toString().split('\n');
+	for (var i in res) {
+		var parse = res[i].split(' ');
+		if (parse[0] === 'msz') {
+			game.createMap(parse[1], parse[2]);
+		}
+	}
 	console.log(res);
 });
 
@@ -38,8 +45,7 @@ angular.module('zabylonApp', [])
 			$scope.ui.connected = true;
 			$timeout(function () {
 
-				var game = new Game();
-				game.createMap(10, 10);
+				game = new Game();
 				game.run();
 
 			});
