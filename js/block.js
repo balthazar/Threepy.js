@@ -18,16 +18,10 @@ module.exports = function Block(map, x, y) {
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		var material = new THREE.MeshPhongMaterial({color: 0x0000ff});
 		self.mesh = new THREE.Mesh(geometry, material);
-		game.scene.add(self.mesh, self.center.x, 0, self.center.y);
+		game.scene.add(self.mesh);
+		game.objects.push(self.mesh);
 		self.mesh.position.x = self.center.x + (0.1 * x);
 		self.mesh.position.y = self.center.y + (0.1 * y);
-
-		self.mesh.onclick = function (e, object) {
-			console.log(e);
-			console.log(object);
-			console.log(this);
-		};
-
 	}
 	initBlock();
 };
