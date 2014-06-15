@@ -1,3 +1,5 @@
+var Map = require('./js/map.js');
+
 module.exports = function Game() {
 
 	var canvas = null;
@@ -18,7 +20,6 @@ module.exports = function Game() {
 	};
 
 	this.create = function () {
-
 		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), scene);
 		var origin = BABYLON.Mesh.CreateSphere('origin', 10, 1.0, scene);
 	};

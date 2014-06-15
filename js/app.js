@@ -3,7 +3,7 @@ global.document = document;
 
 var net = require('net');
 var gui = require('nw.gui');
-var Game = require('./dist/js/game.js');
+var Game = require('./js/game.js');
 
 var win = gui.Window.get();
 win.title = "Zabylon";
