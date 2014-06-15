@@ -1,4 +1,4 @@
-global.THREE = THREE;
+global.THREE = ;
 global.document = document;
 
 var net = require('net');

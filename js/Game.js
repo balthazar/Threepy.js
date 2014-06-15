@@ -9,7 +9,19 @@ module.exports = function Game() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+	var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+
+	var light = new THREE.PointLight(0xffffff, 100, 100);
+	light.position.set(30, -30, 10);
+	scene.add(light);
+	var light2 = new THREE.PointLight(0xffffff, 100, 100);
+	light2.position.set(-30, -30, -50);
+	scene.add(light2);
+
+	var directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+	directionalLight.position.set(0, 0, 100).normalize();
+	scene.add(directionalLight);
+
 	controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 	this.scene = scene;
@@ -18,8 +30,6 @@ module.exports = function Game() {
 	document.body.appendChild(renderer.domElement);
 
 	camera.position.z = 5;
-	camera.position.x = 5;
-	camera.position.y = 5;
 
 	this.createMap = function (width, height) {
 		self.map = new Map(self, width, height);
