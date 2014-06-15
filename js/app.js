@@ -39,9 +39,8 @@ angular.module('zabylonApp', [])
 			$timeout(function () {
 
 				var game = new Game();
-				game.init();
 				game.createMap(10, 10);
-				//game.run();
+				game.run();
 
 			});
 		};

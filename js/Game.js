@@ -4,36 +4,29 @@ module.exports = function Game() {
 
 	var self = this;
 
-	var canvas = null;
-	var engine = null;
-	var scene = null;
-	var camera = null;
+	var canvas = document.querySelector('canvas');
+	var engine = new BABYLON.Engine(canvas, true);
+	var scene = new BABYLON.Scene(engine);
+	var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
 	var window = global.window;
 
 	this.scene = scene;
 	this.engine = engine;
 	this.map = null;
 
-	this.init = function () {
-
-		canvas = document.querySelector('canvas');
-		self.engine = new BABYLON.Engine(canvas, true);
-		self.scene = new BABYLON.Scene(self.engine);
-		self.camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), self.scene);
-		//self.camera2 = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 1, -15), scene);
-
-		self.scene.activeCamera.attachControl(canvas);
-	};
+	scene.activeCamera.attachControl(canvas);
+	//self.camera2 = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, 1, -15), scene);
 
 	this.createMap = function (width, height) {
-		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), self.scene);
-		this.map = new Map(self, width, height);
-		this.run();
+		var light = new BABYLON.PointLight('Omni', new BABYLON.Vector3(0, 0, 10), scene);
+		//var mesh = BABYLON.Mesh.CreateBox('Block', 0.9, scene);
+		self.map = new Map(self, width, height);
+		console.log(self.scene);
 	};
 
 	this.run = function () {
-		self.engine.runRenderLoop(function () {
-			self.scene.render();
+		engine.runRenderLoop(function () {
+			scene.render();
 		});
 	};
 

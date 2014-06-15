@@ -17,7 +17,7 @@ module.exports = function Block(map, x, y) {
 	function initBlock() {
 		self.mesh = BABYLON.Mesh.CreateBox('Block', 0.9, game.scene);
 		self.mesh.position = new BABYLON.Vector3(self.center.x, 0, self.center.y);
-		self.mesh.scaling = 0.3;
+		self.mesh.scaling.y = 2;
 
 		console.log(self.center);
 

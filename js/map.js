@@ -11,11 +11,8 @@ module.exports = function Map(game, width, height) {
 
 	var initMap = function () {
 		for (var i = 0; i < height; i++) {
-			console.log('loop');
 			self.blocks[i] = [];
-			console.log('oooooo');
 			for (var j = 0; j < width; j++) {
-				console.log('loop 2');
 				self.blocks[i][j] = new Block(self, i, j);
 			}
 		}
