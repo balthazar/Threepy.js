@@ -20,9 +20,8 @@ module.exports = function Block(map, x, y) {
 
 	this.setRessources = function (array) {
 		for (var i = 3; i < 10; i++) {
-			self.ressources[i - 3].set(array[i]);
+			self.ressources[i - 3].set(parseInt(array[i]));
 		}
-		console.log(self.ressources);
 	};
 
 	function initBlock() {

@@ -1,4 +1,5 @@
 var Map = require('./map.js');
+var Team = require('./team.js');
 
 module.exports = function Game() {
 
@@ -6,7 +7,7 @@ module.exports = function Game() {
 	var window = global.window;
 
 	/*
-	** Three
+	 ** Three
 	 */
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -42,14 +43,40 @@ module.exports = function Game() {
 	var outlineMesh = null;
 
 	document.body.appendChild(renderer.domElement);
+	/*
+	 ** End Three config
+	 */
 
 	this.scene = scene;
 	this.map = null;
+	this.teams = [];
+	this.players = [];
 	this.objects = [];
 
 	this.createMap = function (width, height) {
 		self.map = new Map(self, width, height);
 	};
+
+	this.addTeam = function (name) {
+		self.teams.push(new Team(self, name));
+	};
+
+	this.newPlayer = function (array) {
+		var player = {
+			nb   : parseInt(array[1].substr(1)),
+			x    : parseInt(array[2]),
+			y    : parseInt(array[3]),
+			o    : parseInt(array[4]),
+			level: parseInt(array[5])
+		};
+
+		self.teams[self.teams.map(function (e) {
+			return e.name;
+		}).indexOf(array[6])].addPlayer(player);
+
+		console.log(self.players);
+	};
+
 
 	this.run = function () {
 		render();
@@ -64,8 +91,8 @@ module.exports = function Game() {
 		if (isMouseDown) {
 			//camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
 			//camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-		    //camera.lookAt(scene.position);
-		    //console.log(camera);
+			//camera.lookAt(scene.position);
+			//console.log(camera);
 		}
 
 		camera.rotation.y = 0;

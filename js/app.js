@@ -20,15 +20,17 @@ client.on('data', function (data) {
 		var cmd = parse[0];
 		if (cmd === 'msz') {
 			game.createMap(parse[1], parse[2]);
-			client.write('msz\n');
 		}
 		else if (cmd === 'bct') {
-			console.log(parse);
 			game.map.getBlock(parse[1], parse[2]).setRessources(parse);
-			//console.log(parse);
+		}
+		else if (cmd === 'tna') {
+			game.addTeam(parse[1]);
+		}
+		else if (cmd === 'pnw') {
+			game.newPlayer(parse);
 		}
 	}
-	console.log(res);
 });
 
 //Error caught
