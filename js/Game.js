@@ -12,8 +12,12 @@ module.exports = function Game() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 	var scene = new THREE.Scene();
+
+	//camera
 	var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-	camera.position.z = 10;
+	camera.position.y = -9;
+	camera.position.z = 9;
+	camera.rotation.x = 0.75;
 
 	var projector = new THREE.Projector();
 	var raycaster;
@@ -56,6 +60,13 @@ module.exports = function Game() {
 		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
 		projector.unprojectVector(vector, camera);
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+
+		if (isMouseDown) {
+			//camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
+			//camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
+		    //camera.lookAt(scene.position);
+		    //console.log(camera);
+		}
 
 		camera.rotation.y = 0;
 		camera.rotation.z = 0;

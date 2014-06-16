@@ -17,8 +17,15 @@ client.on('data', function (data) {
 	var res = data.toString().split('\n');
 	for (var i in res) {
 		var parse = res[i].split(' ');
-		if (parse[0] === 'msz') {
+		var cmd = parse[0];
+		if (cmd === 'msz') {
 			game.createMap(parse[1], parse[2]);
+			client.write('msz\n');
+		}
+		else if (cmd === 'bct') {
+			console.log(parse);
+			game.map.getBlock(parse[1], parse[2]).setRessources(parse);
+			//console.log(parse);
 		}
 	}
 	console.log(res);
