@@ -42,6 +42,18 @@ module.exports = function Game() {
 	//hoverOutline
 	var outlineMesh = null;
 
+	//3d model
+	/*
+	 var manager = new THREE.LoadingManager();
+	 var loader = new THREE.OBJLoader(manager);
+	 loader.load('obj/sonic.obj', function (object) {
+
+	 object.position.z = 2;
+	 scene.add(object);
+
+	 });
+	 */
+
 	document.body.appendChild(renderer.domElement);
 	/*
 	 ** End Three config
