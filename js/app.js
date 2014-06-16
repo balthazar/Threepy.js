@@ -7,8 +7,8 @@ var Game = require('./js/game.js');
 
 var win = gui.Window.get();
 win.title = "Zabylon";
-win.width = 1640;
-win.height = 900;
+win.width = 2000;
+win.height = 1000;
 
 var client = new net.Socket();
 var game;

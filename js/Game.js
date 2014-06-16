@@ -15,20 +15,27 @@ module.exports = function Game() {
 	var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
 	camera.position.z = 10;
 
-	//custom controls
-	controls = new THREE.OrbitControls(camera);
+	var projector = new THREE.Projector();
+	var raycaster;
+
+	//Controls
+	var controls = new THREE.OrbitControls(camera);
+	var mouse = new THREE.Vector2();
+	var isMouseDown;
 
 	// lights
-	var light = new THREE.PointLight(0xffffff, 100, 100);
-	light.position.set(30, -30, 10);
-	scene.add(light);
-	var light2 = new THREE.PointLight(0xffffff, 100, 100);
-	light2.position.set(-30, -30, -50);
+	scene.add(new THREE.AmbientLight(0x444444));
+
+	var light1 = new THREE.DirectionalLight(0xffffff, 0.5);
+	light1.position.set(1, 1, 1);
+	scene.add(light1);
+
+	var light2 = new THREE.DirectionalLight(0xffffff, 1.5);
+	light2.position.set(0, -1, 0);
 	scene.add(light2);
 
-	var directionalLight = new THREE.DirectionalLight(0xffffff, 10);
-	directionalLight.position.set(0, 0, 100).normalize();
-	scene.add(directionalLight);
+	//hoverOutline
+	var outlineMesh = null;
 
 	document.body.appendChild(renderer.domElement);
 
@@ -45,6 +52,30 @@ module.exports = function Game() {
 	};
 
 	var render = function () {
+
+		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
+		projector.unprojectVector(vector, camera);
+		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+
+		camera.rotation.y = 0;
+		camera.rotation.z = 0;
+
+		var intersects = raycaster.intersectObjects(self.objects);
+
+		if (intersects.length > 0) {
+			var object = intersects[0].object;
+
+			if (outlineMesh) {
+				scene.remove(outlineMesh);
+				outlineMesh = null;
+			}
+			outlineMesh = new THREE.BoxHelper(object);
+			outlineMesh.material.color.set(0xffffff);
+			outlineMesh.material.linewidth = 3;
+
+			scene.add(outlineMesh);
+		}
+
 		window.requestAnimationFrame(render);
 		renderer.render(scene, camera);
 	};
@@ -55,26 +86,38 @@ module.exports = function Game() {
 		renderer.setSize(window.innerWidth, window.innerHeight);
 	};
 
-	var checkClicked = function (event) {
+	var mouseDown = function (event) {
 
 		event.preventDefault();
-
-		projector = new THREE.Projector();
+		isMouseDown = true;
 
 		var vector = new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
 		projector.unprojectVector(vector, camera);
 
-		var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 		var intersects = raycaster.intersectObjects(self.objects);
 
 		if (intersects.length > 0) {
-			console.log(intersects[0]);
-			console.log(self.map.getBlock(intersects[0].object.coords.y, intersects[0].object.coords.x));
 			intersects[0].object.material.color.setHex(Math.random());
 		}
 	};
 
-	document.addEventListener('mousedown', checkClicked, false);
+	var mouseMove = function (event) {
 
+		event.preventDefault();
+		mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+	};
+
+	var mouseUp = function (event) {
+		event.preventDefault();
+		isMouseDown = false;
+	};
+
+	//listeners
+	document.addEventListener('mousedown', mouseDown, false);
+	document.addEventListener('mouseup', mouseUp, false);
+	document.addEventListener('mousemove', mouseMove, false);
 	window.addEventListener('resize', windowResize, false);
 };

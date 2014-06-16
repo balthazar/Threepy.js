@@ -10,13 +10,13 @@ module.exports = function Block(map, x, y) {
 	this.mesh = null;
 
 	this.center = {
-		x: this.x,
-		y: this.y
+		x: this.x - (map.width / 2),
+		y: this.y - (map.height / 2)
 	};
 
 	function initBlock() {
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var material = new THREE.MeshPhongMaterial({color: 0x0000ff});
+		var material = new THREE.MeshPhongMaterial({color: 0x0000ff, wireframe:false});
 		self.mesh = new THREE.Mesh(geometry, material);
 		game.scene.add(self.mesh);
 		self.mesh.coords = {
