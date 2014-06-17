@@ -29,8 +29,12 @@
 				<input type="submit" value="Valider">
 			</form>
 		</section>
-		<section ng-if="ui.connected">
-			{{ selectedInfos }}
+		<section ng-if="ui.connected && selectedInfos" class="infos">
+			<p><span>x :</span> {{ selectedInfos.x }}</p>
+			<p><span>y :</span> {{ selectedInfos.y }}</p>
+			<ul>
+				<li ng-repeat="ressource in selectedInfos.res">{{ ressource.type }} x{{ ressource.quantity }}</li>
+			</ul>
 		</section>
 	</body>
 </html>

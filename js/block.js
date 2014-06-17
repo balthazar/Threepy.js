@@ -10,6 +10,7 @@ module.exports = function Block(map, x, y) {
 	this.y = y;
 	this.map = map;
 	this.mesh = null;
+	this.outline = null;
 
 	this.center = {
 		y: (this.x - (map.width / 2)) + (0.1 * x),
@@ -43,6 +44,13 @@ module.exports = function Block(map, x, y) {
 		for (var i = 0; i < 7; i++) {
 			self.ressources[i] = new Ressource(self, i, 0);
 		}
+
+		//outline
+		self.outline = new THREE.BoxHelper(self.mesh);
+		self.outline.material.color.set(0x000000);
+		self.outline.material.linewidth = 3;
+		self.mesh.outline = self.outline;
+		game.scene.add(self.outline);
 	}
 	initBlock();
 };

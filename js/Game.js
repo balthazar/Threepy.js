@@ -40,8 +40,9 @@ module.exports = function Game() {
 	light2.position.set(0, -1, 0);
 	scene.add(light2);
 
-	//hoverOutline
-	var outlineMesh = null;
+	//hoverOutline && selectedBox
+	var oldOutline = null;
+	var oldSelected = null;
 
 	document.body.appendChild(renderer.domElement);
 	/*
@@ -62,7 +63,8 @@ module.exports = function Game() {
 		new THREE.Color(0x6600CC),
 		new THREE.Color(0x66FFFF)
 	];
-	this.selected = 'pute';
+
+	this.selected = null;
 
 	this.createMap = function (width, height) {
 		self.map = new Map(self, width, height);
@@ -120,15 +122,11 @@ module.exports = function Game() {
 		if (intersects.length > 0) {
 			var object = intersects[0].object;
 
-			if (outlineMesh) {
-				scene.remove(outlineMesh);
-				outlineMesh = null;
+			if (oldOutline) {
+				oldOutline.material.color.set(0x000000);
 			}
-			outlineMesh = new THREE.BoxHelper(object);
-			outlineMesh.material.color.set(0xffffff);
-			outlineMesh.material.linewidth = 3;
-
-			scene.add(outlineMesh);
+			object.outline.material.color.set(0xffffff);
+			oldOutline = object.outline;
 		}
 
 		window.requestAnimationFrame(render);
@@ -146,15 +144,28 @@ module.exports = function Game() {
 		event.preventDefault();
 		isMouseDown = true;
 
-		var vector = new THREE.Vector3(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1, 0.5);
+		var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
 		projector.unprojectVector(vector, camera);
 
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 		var intersects = raycaster.intersectObjects(self.objects);
 
 		if (intersects.length > 0) {
-			intersects[0].object.material.color.setHex(Math.random());
-			console.log(intersects[0].object);
+			if (oldSelected) {
+				oldSelected.material.color.set(0x0000ff);
+			}
+			var obj = intersects[0].object;
+			var block = self.map.getBlock(obj.coords.x, obj.coords.y);
+
+			self.selected = {
+				x  : block.x,
+				y  : block.y,
+				res: block.ressources.map(function (e) {
+					return { type: e.type, quantity: e.quantity };
+				})
+			};
+			obj.material.color.set(0x00ff00);
+			oldSelected = obj;
 		}
 	};
 

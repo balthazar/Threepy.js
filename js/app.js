@@ -51,7 +51,7 @@ angular.module('zabylonApp', [])
 			connectPort: 4040
 		};
 
-		$scope.selectedInfos = 'none';
+		$scope.selectedInfos = null;
 
 		$scope.connect = function () {
 			client.connect($scope.ui.connectPort, $scope.ui.connectHost, function () {
@@ -62,6 +62,7 @@ angular.module('zabylonApp', [])
 
 				game = new Game();
 				game.run();
+				$scope.selectedInfos = game.selected;
 
 				setInterval(function () {
 					$scope.$apply(function () {
