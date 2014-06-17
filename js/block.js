@@ -12,8 +12,8 @@ module.exports = function Block(map, x, y) {
 	this.mesh = null;
 
 	this.center = {
-		x: (this.x - (map.width / 2)) + (0.1 * x),
-		y: (this.y - (map.height / 2)) + (0.1 * y)
+		y: (this.x - (map.width / 2)) + (0.1 * x),
+		x: (this.y - (map.height / 2)) + (0.1 * y)
 	};
 
 	this.ressources = [];
@@ -28,7 +28,7 @@ module.exports = function Block(map, x, y) {
 
 		//graphic
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var material = new THREE.MeshPhongMaterial({color: 0x0000ff, wireframe:false});
+		var material = new THREE.MeshPhongMaterial({color: 0x0000ff, wireframe: false});
 		self.mesh = new THREE.Mesh(geometry, material);
 		game.scene.add(self.mesh);
 		self.mesh.coords = {

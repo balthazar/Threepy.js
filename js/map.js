@@ -10,10 +10,10 @@ module.exports = function Map(game, width, height) {
 	this.height = height;
 
 	var initMap = function () {
-		for (var i = 0; i < height; i++) {
-			self.blocks[i] = [];
-			for (var j = 0; j < width; j++) {
-				self.blocks[i][j] = new Block(self, i, j);
+		for (var y = 0; y < height; y++) {
+			self.blocks[y] = [];
+			for (var x = 0; x < width; x++) {
+				self.blocks[y][x] = new Block(self, x, y);
 			}
 		}
 	};

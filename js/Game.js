@@ -43,18 +43,6 @@ module.exports = function Game() {
 	//hoverOutline
 	var outlineMesh = null;
 
-	//3d model
-	/*
-	 var manager = new THREE.LoadingManager();
-	 var loader = new THREE.OBJLoader(manager);
-	 loader.load('obj/sonic.obj', function (object) {
-
-	 object.position.z = 2;
-	 scene.add(object);
-
-	 });
-	 */
-
 	document.body.appendChild(renderer.domElement);
 	/*
 	 ** End Three config
@@ -74,6 +62,7 @@ module.exports = function Game() {
 		new THREE.Color(0x6600CC),
 		new THREE.Color(0x66FFFF)
 	];
+	this.selected = 'pute';
 
 	this.createMap = function (width, height) {
 		self.map = new Map(self, width, height);
@@ -95,8 +84,15 @@ module.exports = function Game() {
 		self.teams[self.teams.map(function (e) {
 			return e.name;
 		}).indexOf(array[6])].addPlayer(player);
+	};
 
-		console.log(self.players);
+	this.movePlayer = function (array) {
+		var player = self.players[self.players.map(function (e) {
+			return e.nb;
+		}).indexOf(parseInt(array[1].substr(1)))];
+		if (player) {
+			player.moveTo(parseInt(array[2]), parseInt(array[3]), parseInt(array[4]));
+		}
 	};
 
 	this.run = function () {
@@ -158,6 +154,7 @@ module.exports = function Game() {
 
 		if (intersects.length > 0) {
 			intersects[0].object.material.color.setHex(Math.random());
+			console.log(intersects[0].object);
 		}
 	};
 

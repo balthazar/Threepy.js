@@ -17,10 +17,10 @@ module.exports = function Player(team, player) {
 	team.game.players.push(self);
 
 	this.setOrientation = function () {
-		self.mesh.rotation.y = (self.coords.o === 1) ? 3 : self.mesh.rotation.y;
-		self.mesh.rotation.y = (self.coords.o === 2) ? 2 : self.mesh.rotation.y;
-		self.mesh.rotation.y = (self.coords.o === 3) ? 1 : self.mesh.rotation.y;
-		self.mesh.rotation.y = (self.coords.o === 4) ? 4 : self.mesh.rotation.y;
+		self.mesh.rotation.y = (self.coords.o === 4) ? 0.7 : self.mesh.rotation.y;
+		self.mesh.rotation.y = (self.coords.o === 3) ? 1.7 : self.mesh.rotation.y;
+		self.mesh.rotation.y = (self.coords.o === 2) ? -2.4 : self.mesh.rotation.y;
+		self.mesh.rotation.y = (self.coords.o === 1) ? -0.7 : self.mesh.rotation.y;
 	};
 
 	var loader = new THREE.OBJMTLLoader();
@@ -36,5 +36,16 @@ module.exports = function Player(team, player) {
 		self.setOrientation();
 		team.game.scene.add(object);
 	});
+
+	this.moveTo = function (x, y, o) {
+		self.coords.x = x;
+		self.coords.y = y;
+		self.coords.o = o;
+		self.center = team.game.map.getRealCenter(self.coords.x, self.coords.y);
+
+		self.mesh.position.x = self.center.x;
+		self.mesh.position.y = self.center.y;
+		self.setOrientation();
+	};
 
 };

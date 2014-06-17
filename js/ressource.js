@@ -44,8 +44,8 @@ module.exports = function Ressource(block, type, quantity) {
 		self.mesh = new THREE.Mesh(geometry, material);
 		self.mesh.rotation.x = 1.60;
 		self.mesh.position.z += 0.51;
-		self.mesh.position.x = self.block.center.x;
-		self.mesh.position.y = self.block.center.y;
+		self.mesh.position.x = self.block.center.x - 0.3 + (type * 0.1);
+		self.mesh.position.y = self.block.center.y - 0.4;
 		game.scene.add(self.mesh);
 	};
 	self.reload();

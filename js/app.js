@@ -30,6 +30,10 @@ client.on('data', function (data) {
 		else if (cmd === 'pnw') {
 			game.newPlayer(parse);
 		}
+		else if (cmd === 'ppo') {
+			game.movePlayer(parse);
+		}
+		console.log(parse);
 	}
 });
 
@@ -47,6 +51,8 @@ angular.module('zabylonApp', [])
 			connectPort: 4040
 		};
 
+		$scope.selectedInfos = 'none';
+
 		$scope.connect = function () {
 			client.connect($scope.ui.connectPort, $scope.ui.connectHost, function () {
 				client.write('GRAPHIC\n');
@@ -56,6 +62,12 @@ angular.module('zabylonApp', [])
 
 				game = new Game();
 				game.run();
+
+				setInterval(function () {
+					$scope.$apply(function () {
+						$scope.selectedInfos = game.selected;
+					});
+				}, 100);
 
 			});
 		};

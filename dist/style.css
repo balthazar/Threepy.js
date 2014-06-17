@@ -34,7 +34,7 @@ body > nav {
 }
 /* line 26, ../scss/style.scss */
 body > section {
-  height: 100%;
+  color: white;
 }
 /* line 28, ../scss/style.scss */
 body > section canvas {
