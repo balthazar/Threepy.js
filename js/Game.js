@@ -19,6 +19,7 @@ module.exports = function Game() {
 	camera.position.y = -9;
 	camera.position.z = 9;
 	camera.rotation.x = 0.75;
+	//camera.lookAt(scene.position);
 
 	var projector = new THREE.Projector();
 	var raycaster;
@@ -89,10 +90,13 @@ module.exports = function Game() {
 		console.log(self.players);
 	};
 
-
 	this.run = function () {
 		render();
 	};
+
+	var engine = new ParticleEngine();
+	engine.setValues(parameters);
+	engine.initialize();
 
 	var render = function () {
 

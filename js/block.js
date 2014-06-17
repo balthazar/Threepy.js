@@ -12,8 +12,8 @@ module.exports = function Block(map, x, y) {
 	this.mesh = null;
 
 	this.center = {
-		x: this.x - (map.width / 2),
-		y: this.y - (map.height / 2)
+		x: (this.x - (map.width / 2)) + (0.1 * x),
+		y: (this.y - (map.height / 2)) + (0.1 * y)
 	};
 
 	this.ressources = [];
@@ -36,8 +36,8 @@ module.exports = function Block(map, x, y) {
 			y: y
 		};
 		game.objects.push(self.mesh);
-		self.mesh.position.x = self.center.x + (0.1 * x);
-		self.mesh.position.y = self.center.y + (0.1 * y);
+		self.mesh.position.x = self.center.x;
+		self.mesh.position.y = self.center.y;
 		console.log(self.mesh.position);
 
 		//ressources

@@ -24,7 +24,6 @@ module.exports = function Map(game, width, height) {
 	};
 
 	this.getRealCenter = function (x, y) {
-		var out = self.blocks[y][x].mesh.position;
-		return out;
+		return self.blocks[y][x].center;
 	};
 };
