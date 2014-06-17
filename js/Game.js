@@ -94,10 +94,39 @@ module.exports = function Game() {
 		render();
 	};
 
+
+
+	/*
+	var Type = Object.freeze({ "CUBE": 1, "SPHERE": 2 });
+
+	var parameters =
+	{
+		positionStyle : Type.CUBE,
+		positionBase  : new THREE.Vector3(0, 5, 0),
+		positionSpread: new THREE.Vector3(10, 0, 10),
+
+		velocityStyle : Type.CUBE,
+		velocityBase  : new THREE.Vector3(0, 160, 0),
+		velocitySpread: new THREE.Vector3(100, 20, 100),
+
+		accelerationBase: new THREE.Vector3(0, -100, 0),
+
+		particleTexture: new THREE.ParticleSystemMaterial({ size: 15, vertexColors: true }),
+
+		angleBase          : 0,
+		angleSpread        : 180,
+		angleVelocityBase  : 0,
+		angleVelocitySpread: 360 * 4,
+
+		particlesPerSecond: 200,
+		particleDeathAge  : 3.0,
+		emitterDeathAge   : 60
+	};
+
 	var engine = new ParticleEngine();
 	engine.setValues(parameters);
 	engine.initialize();
-
+*/
 	var render = function () {
 
 		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
