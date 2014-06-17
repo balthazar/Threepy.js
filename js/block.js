@@ -28,9 +28,7 @@ module.exports = function Block(map, x, y) {
 
 		//graphic
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var gt = THREE.ImageUtils.loadTexture("obj/grass.jpg");
-		var material = new THREE.MeshPhongMaterial({color: 0x0000ff, wireframe:false, map: gt, overdraw:true});
-
+		var material = new THREE.MeshPhongMaterial({color: 0x0000ff, wireframe:false});
 		self.mesh = new THREE.Mesh(geometry, material);
 		game.scene.add(self.mesh);
 		self.mesh.coords = {
@@ -40,7 +38,6 @@ module.exports = function Block(map, x, y) {
 		game.objects.push(self.mesh);
 		self.mesh.position.x = self.center.x;
 		self.mesh.position.y = self.center.y;
-		console.log(self.mesh.position);
 
 		//ressources
 		for (var i = 0; i < 7; i++) {
