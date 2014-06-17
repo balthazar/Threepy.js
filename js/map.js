@@ -22,4 +22,9 @@ module.exports = function Map(game, width, height) {
 	this.getBlock = function (x, y) {
 		return self.blocks[y][x];
 	};
+
+	this.getRealCenter = function (x, y) {
+		var out = self.blocks[y][x].mesh.position;
+		return out;
+	};
 };

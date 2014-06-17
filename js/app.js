@@ -6,7 +6,7 @@ var gui = require('nw.gui');
 var Game = require('./js/game.js');
 
 var win = gui.Window.get();
-win.title = "Zabylon";
+win.title = "Threepy.js";
 win.width = 2000;
 win.height = 1000;
 
