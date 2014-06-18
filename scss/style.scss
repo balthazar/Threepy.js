@@ -1,0 +1,111 @@
+@import 'compass/css3';
+@import 'compass/css3/transition';
+
+* {
+	outline: none;
+	box-sizing: border-box;
+}
+
+html, body {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background-color: #000000;
+	@include user-select(none);
+}
+
+input, select, textarea, button, i {
+	@include user-select(text);
+}
+
+body {
+	margin: 0;
+	> nav {
+		position: fixed;
+	}
+	> section {
+		color: white;
+		canvas {
+			height: 100%;
+		}
+		form {
+			margin-top: 25px;
+		}
+	}
+}
+
+.infos {
+	position: absolute;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	top: 20px;
+	left: 20px;
+	font-family: Arial;
+	font-size: 13px;
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+}
+
+.drag {
+	-webkit-app-region: drag;
+}
+
+.nodrag {
+	-webkit-app-region: no-drag;
+}
+
+nav {
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 25px;
+	opacity: 0.6;
+	background: -webkit-gradient(linear, left top, left 25, from(rgba(black, .2)), to(rgba(white, 0)));
+	@include transition(all .3s);
+	&:hover {
+		opacity: 1.0;
+	}
+	a {
+		z-index: 2000;
+		content: '';
+		border: 0;
+		background-color: rgba(gray, .7);
+		padding: 0;
+		width: 10px;
+		height: 10px;
+		line-height: 3px;
+		top: 8px;
+		right: 8px;
+		overflow: hidden;
+		position: absolute;
+		cursor: pointer;
+		@include border-radius(50%);
+		@include transition(background-color .3s);
+		color: #CCC;
+		opacity: 0.6;
+		&.hide {
+			right: 32px	;
+			&:hover {
+				background-color: #d0a00f;
+			}
+		}
+		&.resize {
+			right: 20px;
+			&:hover {
+				background-color: #0fb00f;
+			}
+		}
+		&.close {
+			&:hover {
+				background-color: #b00f0f;
+			}
+		}
+		&:hover {
+			opacity: 1.0;
+		}
+	}
+}

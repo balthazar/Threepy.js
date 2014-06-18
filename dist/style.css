@@ -1,0 +1,141 @@
+/* line 4, ../scss/style.scss */
+* {
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* line 9, ../scss/style.scss */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* line 17, ../scss/style.scss */
+input, select, textarea, button, i {
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* line 21, ../scss/style.scss */
+body {
+  margin: 0;
+}
+/* line 23, ../scss/style.scss */
+body > nav {
+  position: fixed;
+}
+/* line 26, ../scss/style.scss */
+body > section {
+  color: white;
+}
+/* line 28, ../scss/style.scss */
+body > section canvas {
+  height: 100%;
+}
+/* line 31, ../scss/style.scss */
+body > section form {
+  margin-top: 25px;
+}
+
+/* line 37, ../scss/style.scss */
+.infos {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  top: 20px;
+  left: 20px;
+  font-family: Arial;
+  font-size: 13px;
+}
+/* line 45, ../scss/style.scss */
+.infos ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* line 51, ../scss/style.scss */
+.drag {
+  -webkit-app-region: drag;
+}
+
+/* line 55, ../scss/style.scss */
+.nodrag {
+  -webkit-app-region: no-drag;
+}
+
+/* line 59, ../scss/style.scss */
+nav {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  opacity: 0.6;
+  background: -webkit-gradient(linear, left top, left 25, from(rgba(0, 0, 0, 0.2)), to(rgba(255, 255, 255, 0)));
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+/* line 69, ../scss/style.scss */
+nav:hover {
+  opacity: 1.0;
+}
+/* line 72, ../scss/style.scss */
+nav a {
+  z-index: 2000;
+  content: '';
+  border: 0;
+  background-color: rgba(128, 128, 128, 0.7);
+  padding: 0;
+  width: 10px;
+  height: 10px;
+  line-height: 3px;
+  top: 8px;
+  right: 8px;
+  overflow: hidden;
+  position: absolute;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  color: #CCC;
+  opacity: 0.6;
+}
+/* line 90, ../scss/style.scss */
+nav a.hide {
+  right: 32px;
+}
+/* line 92, ../scss/style.scss */
+nav a.hide:hover {
+  background-color: #d0a00f;
+}
+/* line 96, ../scss/style.scss */
+nav a.resize {
+  right: 20px;
+}
+/* line 98, ../scss/style.scss */
+nav a.resize:hover {
+  background-color: #0fb00f;
+}
+/* line 103, ../scss/style.scss */
+nav a.close:hover {
+  background-color: #b00f0f;
+}
+/* line 107, ../scss/style.scss */
+nav a:hover {
+  opacity: 1.0;
+}
