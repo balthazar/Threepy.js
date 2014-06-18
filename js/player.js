@@ -34,6 +34,7 @@ module.exports = function Player(team, player) {
 		object.position.y = self.center.y;
 		self.mesh = object;
 		self.setOrientation();
+
 		team.game.scene.add(object);
 	});
 
