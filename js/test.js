@@ -45,6 +45,7 @@ module.exports = function Game() {
 	var oldSelected = null;
 
 	document.body.appendChild(renderer.domElement);
+
 	/*
 	 ** End Three config
 	 */
@@ -108,14 +109,16 @@ module.exports = function Game() {
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 
 		if (isMouseDown) {
-			//camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
-			//camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-			//camera.lookAt(scene.position);
-			//console.log(camera);
+			/*
+			camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
+			camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
+			camera.lookAt(scene.position);
+			console.log(camera);
+			*/
 		}
 
-		camera.rotation.y = 0;
-		camera.rotation.z = 0;
+		//camera.rotation.y = 0;
+		//camera.rotation.z = 0;
 
 		var intersects = raycaster.intersectObjects(self.objects);
 

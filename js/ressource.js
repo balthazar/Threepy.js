@@ -48,6 +48,7 @@ module.exports = function Ressource(block, type, quantity) {
 		self.mesh.position.y = self.block.center.y - 0.4;
 		game.scene.add(self.mesh);
 	};
+
 	self.reload();
 
 };
