@@ -36,7 +36,16 @@ body {
 
 .infos {
 	position: absolute;
-	border-bottom: 2px solid rgba(white, .3);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	padding: 20px;
+	top: 20px;
+	left: 20px;
+	font-family: Arial;
+	font-size: 13px;
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 }
 
 .drag {

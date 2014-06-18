@@ -53,6 +53,10 @@ angular.module('zabylonApp', [])
 
 		$scope.selectedInfos = null;
 
+		$scope.ressourcesNames = [
+			'Nourriture', 'Linemate', 'Deraumère', 'Sibur','Mendiane','Phiras','Thystame'
+		];
+
 		$scope.connect = function () {
 			client.connect($scope.ui.connectPort, $scope.ui.connectHost, function () {
 				client.write('GRAPHIC\n');
@@ -62,7 +66,6 @@ angular.module('zabylonApp', [])
 
 				game = new Game();
 				game.run();
-				$scope.selectedInfos = game.selected;
 
 				setInterval(function () {
 					$scope.$apply(function () {

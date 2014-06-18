@@ -48,20 +48,30 @@ body > section form {
 /* line 37, ../scss/style.scss */
 .infos {
   position: absolute;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  top: 20px;
+  left: 20px;
+  font-family: Arial;
+  font-size: 13px;
+}
+/* line 45, ../scss/style.scss */
+.infos ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-/* line 42, ../scss/style.scss */
+/* line 51, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 46, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
-/* line 50, ../scss/style.scss */
+/* line 59, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -76,11 +86,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 60, ../scss/style.scss */
+/* line 69, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 63, ../scss/style.scss */
+/* line 72, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -105,27 +115,27 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 81, ../scss/style.scss */
+/* line 90, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 83, ../scss/style.scss */
+/* line 92, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 87, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 89, ../scss/style.scss */
+/* line 98, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 94, ../scss/style.scss */
+/* line 103, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 98, ../scss/style.scss */
+/* line 107, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }
