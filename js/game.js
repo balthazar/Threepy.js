@@ -87,12 +87,23 @@ module.exports = function Game() {
 		}).indexOf(array[6])].addPlayer(player);
 	};
 
-	this.movePlayer = function (array) {
-		var player = self.players[self.players.map(function (e) {
+	this.getPlayer = function (number) {
+		return self.players[self.players.map(function (e) {
 			return e.nb;
-		}).indexOf(parseInt(array[1].substr(1)))];
+		}).indexOf(number)];
+	};
+
+	this.movePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
 		if (player) {
 			player.moveTo(parseInt(array[2]), parseInt(array[3]), parseInt(array[4]));
+		}
+	};
+
+	this.changeLevel = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.setLevel(parseInt(array[2]));
 		}
 	};
 

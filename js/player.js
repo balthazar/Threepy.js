@@ -49,4 +49,8 @@ module.exports = function Player(team, player) {
 		self.setOrientation();
 	};
 
+	this.setLevel = function (level) {
+		self.level = level;
+	};
+
 };
