@@ -1,46 +1,17 @@
 global.THREE = THREE;
 global.document = document;
 
-var net = require('net');
 var gui = require('nw.gui');
 var Game = require('./js/game.js');
+var Socket = require('./js/socket.js');
 
 var win = gui.Window.get();
 win.title = "Threepy.js";
 win.width = 2000;
 win.height = 1000;
 
-var client = new net.Socket();
-var game;
-
-client.on('data', function (data) {
-	var res = data.toString().split('\n');
-	for (var i in res) {
-		var parse = res[i].split(' ');
-		var cmd = parse[0];
-		if (cmd === 'msz') {
-			game.createMap(parse[1], parse[2]);
-		}
-		else if (cmd === 'bct') {
-			game.map.getBlock(parse[1], parse[2]).setRessources(parse);
-		}
-		else if (cmd === 'tna') {
-			game.addTeam(parse[1]);
-		}
-		else if (cmd === 'pnw') {
-			game.newPlayer(parse);
-		}
-		else if (cmd === 'ppo') {
-			game.movePlayer(parse);
-		}
-		console.log(parse);
-	}
-});
-
-//Error caught
-process.on('uncaughtException', function (e) {
-	console.log(e);
-});
+var game = new Game();
+var socket = new Socket(game);
 
 angular.module('zabylonApp', [])
 	.controller('zabylonCtrl', function ($scope, $timeout) {
@@ -58,13 +29,11 @@ angular.module('zabylonApp', [])
 		];
 
 		$scope.connect = function () {
-			client.connect($scope.ui.connectPort, $scope.ui.connectHost, function () {
-				client.write('GRAPHIC\n');
-			});
+
+			socket.connect($scope.ui.connectHost, $scope.ui.connectPort);
 			$scope.ui.connected = true;
 			$timeout(function () {
 
-				game = new Game();
 				game.run();
 
 				setInterval(function () {

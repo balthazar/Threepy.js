@@ -16,16 +16,16 @@ module.exports = function Game() {
 
 	//camera
 	var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-	camera.position.y = -9;
 	camera.position.z = 9;
+	camera.position.y = -9;
 	camera.rotation.x = 0.75;
-	//camera.lookAt(scene.position);
+	camera.lookAt(scene.position);
 
 	var projector = new THREE.Projector();
 	var raycaster;
 
 	//Controls
-	var controls = new THREE.OrbitControls(camera);
+	var controls = new THREE.OrbitControls(camera, renderer.domElement);
 	var mouse = new THREE.Vector2();
 	var isMouseDown;
 
@@ -44,7 +44,6 @@ module.exports = function Game() {
 	var oldOutline = null;
 	var oldSelected = null;
 
-	document.body.appendChild(renderer.domElement);
 	/*
 	 ** End Three config
 	 */
@@ -88,16 +87,36 @@ module.exports = function Game() {
 		}).indexOf(array[6])].addPlayer(player);
 	};
 
-	this.movePlayer = function (array) {
-		var player = self.players[self.players.map(function (e) {
+	this.getPlayer = function (number) {
+		return self.players[self.players.map(function (e) {
 			return e.nb;
-		}).indexOf(parseInt(array[1].substr(1)))];
+		}).indexOf(number)];
+	};
+
+	this.movePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
 		if (player) {
 			player.moveTo(parseInt(array[2]), parseInt(array[3]), parseInt(array[4]));
 		}
 	};
 
+	this.changeLevel = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.setLevel(parseInt(array[2]));
+		}
+	};
+
+	this.removePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.kill();
+		}
+	};
+
 	this.run = function () {
+
+		document.body.appendChild(renderer.domElement);
 		render();
 	};
 
@@ -108,10 +127,12 @@ module.exports = function Game() {
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 
 		if (isMouseDown) {
-			//camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
-			//camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-			//camera.lookAt(scene.position);
-			//console.log(camera);
+			/*
+			camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
+			camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
+			camera.lookAt(scene.position);
+			console.log(camera);
+			*/
 		}
 
 		camera.rotation.y = 0;
@@ -155,17 +176,22 @@ module.exports = function Game() {
 				oldSelected.material.color.set(0x0000ff);
 			}
 			var obj = intersects[0].object;
-			var block = self.map.getBlock(obj.coords.x, obj.coords.y);
+			var block = null;
+			if (obj.coords) {
+				block = self.map.getBlock(obj.coords.x, obj.coords.y);
+			}
+			if (block) {
+				self.selected = {
+					x  : block.x,
+					y  : block.y,
+					res: block.ressources.map(function (e) {
+						return { type: e.type, quantity: e.quantity };
+					})
+				};
 
-			self.selected = {
-				x  : block.x,
-				y  : block.y,
-				res: block.ressources.map(function (e) {
-					return { type: e.type, quantity: e.quantity };
-				})
-			};
-			obj.material.color.set(0x00ff00);
-			oldSelected = obj;
+				obj.material.color.set(0x00ff00);
+				oldSelected = obj;
+			}
 		}
 	};
 
