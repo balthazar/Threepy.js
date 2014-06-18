@@ -107,6 +107,13 @@ module.exports = function Game() {
 		}
 	};
 
+	this.removePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.kill();
+		}
+	};
+
 	this.run = function () {
 
 		document.body.appendChild(renderer.domElement);

@@ -37,6 +37,9 @@ module.exports = function Socket(game) {
 			else if (cmd === 'plv') {
 				game.changeLevel(parse);
 			}
+			else if (cmd === 'pdi') {
+				game.removePlayer(parse);
+			}
 			console.log(parse);
 		}
 	});

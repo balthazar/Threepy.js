@@ -24,7 +24,7 @@ module.exports = function Player(team, player) {
 	};
 
 	var loader = new THREE.OBJMTLLoader();
-	loader.load('obj/sonic.obj', 'obj/sonic.mtl', function (object) {
+	loader.load('obj/textures/sonic.obj', 'obj/textures/sonic3.mtl', function (object) {
 		object.scale.x = 0.03;
 		object.scale.y = 0.03;
 		object.scale.z = 0.03;
@@ -51,6 +51,18 @@ module.exports = function Player(team, player) {
 
 	this.setLevel = function (level) {
 		self.level = level;
+	};
+
+	this.kill = function () {
+		for (var i = 0; i < 100; i++) {
+			setTimeout(function () {
+				self.mesh.position.z -= 0.05;
+			}, 1);
+		}
+		team.game.scene.remove(self.mesh);
+		team.game.players.splice(team.game.players.map(function (e) {
+			return e.nb;
+		}).indexOf(self.nb), 1);
 	};
 
 };
