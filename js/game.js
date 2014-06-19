@@ -141,6 +141,8 @@ module.exports = function Game() {
 	var elevates = [];
 
 	var elevateInProgress = true;
+	var elevateEffect = 0;
+	var blockEffect = false;
 	var elevateMesh = null;
 
 	var render = function () {
@@ -150,25 +152,29 @@ module.exports = function Game() {
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 
 		if (elevateInProgress) {
-			elevateMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.1), elevateMaterial);
-			elevates.push(elevateMesh);
-			scene.add(elevateMesh);
-		}
-		if (elevateMaterial.uniforms.m_CollisionAlphas.value < 0) {
-			elevateMaterial.uniforms.m_CollisionAlphas.value = 0.3;
+			if (elevateEffect < 40 && !blockEffect) {
+				elevateMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.1), elevateMaterial.clone());
+				elevateMesh.position.z = 0.5;
+				elevates.push(elevateMesh);
+				scene.add(elevateMesh);
+				++elevateEffect;
+			}
+			else {
+				blockEffect = true;
+				elevateEffect -= 2;
+				blockEffect = (elevateEffect >= 0);
+			}
 		}
 
 		for (var i = 0; i < elevates.length; i++) {
 			elevates[i].position.z += 0.05;
-			elevates[i].material.uniforms.m_CollisionAlphas.value -= 0.001;
+			elevates[i].material.uniforms.m_CollisionAlphas.value -= 0.01;
 			elevates[i].loop = (elevates[i].loop) ? elevates[i].loop + 1 : 1;
-			if (elevates[i].loop > 50) {
+			if (elevates[i].loop > 40) {
+				scene.remove(elevates[i]);
 				elevates.splice(i, 1);
 			}
 		}
-
-		//sphere.material.uniforms.m_CollisionAlphas.value -= 0.001;
-		//sphere.position.z += 0.03;
 
 		if (isMouseDown) {
 			/*
