@@ -44,44 +44,26 @@ module.exports = function Game() {
 	var oldOutline = null;
 	var oldSelected = null;
 
-	//shaders
-	var mat = new THREE.ShaderMaterial({
+	//elevateShader
+	var elevateMaterial = new THREE.ShaderMaterial({
 		uniforms: {
-			m_MinAlpha       : {
-				type : 'f',
-				value: 0
-			},
-			m_MaxDistance    : {
-				type : 'f',
-				value: 700
-			},
-			m_Color          : {
-				type : 'v4',
-				value: new THREE.Vector4(0, 0, 0, 1)
-			},
-			m_CollisionNum   : {
-				type : 'i',
-				value: 1
-			},
-			m_CollisionAlphas: {
-				type : 'f',
-				value: 1
-			},
-			m_Collisions     : {
-				type : 'v3',
-				value: new THREE.Vector3(0, -500, 0)
-			}
+			m_MinAlpha       : { type : 'f', value: 0 },
+			m_MaxDistance    : { type : 'f', value: 700 },
+			m_Color          : { type : 'v4', value: new THREE.Vector4(0, 0, 1, 1) },
+			m_CollisionNum   : { type : 'i', value: 1 },
+			m_CollisionAlphas: { type : 'f', value: 0.3 },
+			m_Collisions     : { type : 'v3', value: new THREE.Vector3(0, -500, 0) }
 		},
 		vertexShader  : document.getElementById('vertexShader').textContent,
 		fragmentShader: document.getElementById('fragmentShader').textContent,
 		side          : THREE.FrontSide,
 		blending      : THREE.NormalBlending,
-		transparent   : false,
-		name          : 'TESTING Shader',
-		color         : new THREE.Color(0x0080FF)
+		transparent   : true,
+		name          : 'Elevate'
 	});
 
-	var sphere = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), mat);
+	var sphere = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 10), elevateMaterial);
+
 	console.log(sphere.material);
 
 
@@ -169,6 +151,9 @@ module.exports = function Game() {
 		projector.unprojectVector(vector, camera);
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
 
+		//sphere.material.uniforms.m_CollisionAlphas.value -= 0.001;
+		//sphere.position.z += 0.03;
+
 		if (isMouseDown) {
 			/*
 			camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
@@ -177,12 +162,6 @@ module.exports = function Game() {
 			console.log(camera);
 			*/
 		}
-
-		/*
-		var c = 0.5 + 0.5 * Math.cos(
-				new Date().getTime() / 1000.0 * Math.PI);
-		character.material.uniforms.color.value = c;
-		*/
 
 		camera.rotation.y = 0;
 		camera.rotation.z = 0;
