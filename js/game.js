@@ -57,17 +57,10 @@ module.exports = function Game() {
 		vertexShader  : document.getElementById('vertexShader').textContent,
 		fragmentShader: document.getElementById('fragmentShader').textContent,
 		side          : THREE.FrontSide,
-		blending      : THREE.NormalBlending,
+		blending      : THREE.AdditiveBlending,
 		transparent   : true,
 		name          : 'Elevate'
 	});
-
-	var sphere = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 10), elevateMaterial);
-
-	console.log(sphere.material);
-
-
-	scene.add(sphere);
 
 	/*
 	 ** End Three config
@@ -145,11 +138,34 @@ module.exports = function Game() {
 		render();
 	};
 
+	var elevates = [];
+
+	var elevateInProgress = true;
+	var elevateMesh = null;
+
 	var render = function () {
 
 		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
 		projector.unprojectVector(vector, camera);
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+
+		if (elevateInProgress) {
+			elevateMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.1), elevateMaterial);
+			elevates.push(elevateMesh);
+			scene.add(elevateMesh);
+		}
+		if (elevateMaterial.uniforms.m_CollisionAlphas.value < 0) {
+			elevateMaterial.uniforms.m_CollisionAlphas.value = 0.3;
+		}
+
+		for (var i = 0; i < elevates.length; i++) {
+			elevates[i].position.z += 0.05;
+			elevates[i].material.uniforms.m_CollisionAlphas.value -= 0.001;
+			elevates[i].loop = (elevates[i].loop) ? elevates[i].loop + 1 : 1;
+			if (elevates[i].loop > 50) {
+				elevates.splice(i, 1);
+			}
+		}
 
 		//sphere.material.uniforms.m_CollisionAlphas.value -= 0.001;
 		//sphere.position.z += 0.03;
