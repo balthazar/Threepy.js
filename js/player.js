@@ -25,9 +25,9 @@ module.exports = function Player(team, player) {
 
 	var loader = new THREE.OBJMTLLoader();
 	loader.load('obj/textures/sonic.obj', 'obj/textures/sonic'+ team.game.teams.indexOf(self.team) % 9 +'.mtl', function (object) {
-		object.scale.x = 0.03;
-		object.scale.y = 0.03;
-		object.scale.z = 0.03;
+		object.scale.x = 0.010;
+		object.scale.y = 0.010;
+		object.scale.z = 0.010;
 		object.rotation.x = 1.5;
 		object.position.z = 0.5;
 		object.position.x = self.center.x;
@@ -50,6 +50,9 @@ module.exports = function Player(team, player) {
 	};
 
 	this.setLevel = function (level) {
+		self.mesh.scale.x += 0.005;
+		self.mesh.scale.y += 0.005;
+		self.mesh.scale.z += 0.005;
 		self.level = level;
 	};
 

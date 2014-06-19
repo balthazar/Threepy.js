@@ -12,6 +12,8 @@ module.exports = function Block(map, x, y) {
 	this.mesh = null;
 	this.outline = null;
 
+	this.elevate = false;
+
 	this.center = {
 		y: (this.x - (map.width / 2)) + (0.1 * x),
 		x: (this.y - (map.height / 2)) + (0.1 * y)

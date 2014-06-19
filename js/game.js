@@ -44,6 +44,24 @@ module.exports = function Game() {
 	var oldOutline = null;
 	var oldSelected = null;
 
+	//elevateShader
+	var elevateMaterial = new THREE.ShaderMaterial({
+		uniforms: {
+			m_MinAlpha       : { type : 'f', value: 0 },
+			m_MaxDistance    : { type : 'f', value: 700 },
+			m_Color          : { type : 'v4', value: new THREE.Vector4(0, 0, 1, 1) },
+			m_CollisionNum   : { type : 'i', value: 1 },
+			m_CollisionAlphas: { type : 'f', value: 0.3 },
+			m_Collisions     : { type : 'v3', value: new THREE.Vector3(0, -500, 0) }
+		},
+		vertexShader  : document.getElementById('vertexShader').textContent,
+		fragmentShader: document.getElementById('fragmentShader').textContent,
+		side          : THREE.FrontSide,
+		blending      : THREE.AdditiveBlending,
+		transparent   : true,
+		name          : 'Elevate'
+	});
+
 	/*
 	 ** End Three config
 	 */
@@ -120,11 +138,43 @@ module.exports = function Game() {
 		render();
 	};
 
+	var elevates = [];
+
+	var elevateInProgress = true;
+	var elevateEffect = 0;
+	var blockEffect = false;
+	var elevateMesh = null;
+
 	var render = function () {
 
 		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
 		projector.unprojectVector(vector, camera);
 		raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+
+		if (elevateInProgress) {
+			if (elevateEffect < 40 && !blockEffect) {
+				elevateMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.1), elevateMaterial.clone());
+				elevateMesh.position.z = 0.5;
+				elevates.push(elevateMesh);
+				scene.add(elevateMesh);
+				++elevateEffect;
+			}
+			else {
+				blockEffect = true;
+				elevateEffect -= 2;
+				blockEffect = (elevateEffect >= 0);
+			}
+		}
+
+		for (var i = 0; i < elevates.length; i++) {
+			elevates[i].position.z += 0.05;
+			elevates[i].material.uniforms.m_CollisionAlphas.value -= 0.01;
+			elevates[i].loop = (elevates[i].loop) ? elevates[i].loop + 1 : 1;
+			if (elevates[i].loop > 40) {
+				scene.remove(elevates[i]);
+				elevates.splice(i, 1);
+			}
+		}
 
 		if (isMouseDown) {
 			/*

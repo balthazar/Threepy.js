@@ -40,7 +40,7 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pdi') {
 				game.removePlayer(parse);
 			}
-			console.log(parse);
+			//console.log(parse);
 		}
 	});
 

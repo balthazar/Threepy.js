@@ -25,7 +25,7 @@ angular.module('zabylonApp', [])
 		$scope.selectedInfos = null;
 
 		$scope.ressourcesNames = [
-			'Nourriture', 'Linemate', 'Deraumère', 'Sibur','Mendiane','Phiras','Thystame'
+			'Nourriture', 'Linemate', 'Deraumère', 'Sibur', 'Mendiane', 'Phiras', 'Thystame'
 		];
 
 		$scope.connect = function () {
