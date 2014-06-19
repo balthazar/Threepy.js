@@ -72,29 +72,8 @@ module.exports = function Game() {
 				value: new THREE.Vector3(0, -500, 0)
 			}
 		},
-		vertexShader  : 'uniform int m_CollisionNum;' +
-			'uniform vec3 m_Collisions;' +
-			'varying float dists;' +
-			'void main(){' +
-			'   dists=distance(position,m_Collisions);' +
-			'    gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);' +
-			'}',
-		fragmentShader: 'uniform float m_MinAlpha;' +
-			'uniform float m_MaxDistance;' +
-			'const float pi = 3.141592;' +
-			'const float e = 2.71828183;' +
-			'uniform vec4 m_Color;' +
-			'uniform int m_CollisionNum;' +
-			'uniform float m_CollisionAlphas;' +
-			'varying float dists;' +
-			'void main(void) {' +
-			'   vec4 color = vec4(1.0,1.0,1.0,m_MinAlpha);' +
-			'   float x = dists/(m_MaxDistance);//+();' +
-			'   float y = (1.0 - m_CollisionAlphas);' +
-			'   color.a += pow(e,(-1.0*((x-y)*(x-y))*30.0))*(1.0-y);' +
-			'   color *= m_Color;' +
-			'   gl_FragColor = color;' +
-			'}',
+		vertexShader  : document.getElementById('vertexShader').textContent,
+		fragmentShader: document.getElementById('fragmentShader').textContent,
 		side          : THREE.FrontSide,
 		blending      : THREE.NormalBlending,
 		transparent   : false,
