@@ -64,19 +64,6 @@ module.exports = function Game() {
 		new THREE.Color(0x66FFFF)
 	];
 
-	/*
-	 1A2B91 bleu
-	 006000 vert
-	 2B2B2B noir
-	 B50083 rose
-	 930E13 rouge
-	 650BCF violet
-	 BEDAFF blanc
-	 4C3000 marron
-	 008BC6 azure
-	 E2C600 jaune
-	 */
-
 	this.teamColor = [
 		0x1A2B91,
 		0x006000,
@@ -100,6 +87,9 @@ module.exports = function Game() {
 		self.teams.push(new Team(self, name));
 	};
 
+	/*
+	** Player
+	 */
 	this.newPlayer = function (array) {
 		var player = {
 			nb   : parseInt(array[1].substr(1)),
@@ -114,6 +104,36 @@ module.exports = function Game() {
 		}).indexOf(array[6])].addPlayer(player);
 	};
 
+	this.getPlayer = function (number) {
+		return self.players[self.players.map(function (e) {
+			return e.nb;
+		}).indexOf(number)];
+	};
+
+	this.movePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.moveTo(parseInt(array[2]), parseInt(array[3]), parseInt(array[4]));
+		}
+	};
+
+	this.changeLevel = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.setLevel(parseInt(array[2]));
+		}
+	};
+
+	this.removePlayer = function (array) {
+		var player = self.getPlayer(parseInt(array[1].substr(1)));
+		if (player) {
+			player.kill();
+		}
+	};
+
+	/*
+	** Egg
+	 */
 	this.newEgg = function (nb, player, x, y) {
 		var block = self.map.blocks[y][x];
 		var chicken = self.getPlayer(player);
@@ -160,33 +180,6 @@ module.exports = function Game() {
 			setTimeout(function () {
 				self.removeEgg(num);
 			}, 10000);
-		}
-	};
-
-	this.getPlayer = function (number) {
-		return self.players[self.players.map(function (e) {
-			return e.nb;
-		}).indexOf(number)];
-	};
-
-	this.movePlayer = function (array) {
-		var player = self.getPlayer(parseInt(array[1].substr(1)));
-		if (player) {
-			player.moveTo(parseInt(array[2]), parseInt(array[3]), parseInt(array[4]));
-		}
-	};
-
-	this.changeLevel = function (array) {
-		var player = self.getPlayer(parseInt(array[1].substr(1)));
-		if (player) {
-			player.setLevel(parseInt(array[2]));
-		}
-	};
-
-	this.removePlayer = function (array) {
-		var player = self.getPlayer(parseInt(array[1].substr(1)));
-		if (player) {
-			player.kill();
 		}
 	};
 
