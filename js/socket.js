@@ -43,6 +43,9 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pic') {
 				game.map.launchElevate(parse);
 			}
+			else if (cmd === 'pie') {
+				game.map.resultElevate(parse);
+			}
 			//console.log(parse);
 		}
 	});

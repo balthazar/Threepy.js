@@ -29,6 +29,10 @@ module.exports = function Map(game, width, height) {
 		self.blocks[array[2]][array[1]].elevate = true;
 	};
 
+	this.resultElevate = function (array) {
+		self.blocks[array[2]][array[1]].elevateResult(parseInt(array[3]));
+	};
+
 	var initMap = function () {
 		for (var y = 0; y < height; y++) {
 			self.blocks[y] = [];
