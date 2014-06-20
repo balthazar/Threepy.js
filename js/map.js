@@ -9,6 +9,26 @@ module.exports = function Map(game, width, height) {
 	this.width = width;
 	this.height = height;
 
+	this.getBlock = function (x, y) {
+		return self.blocks[y][x];
+	};
+
+	this.getRealCenter = function (x, y) {
+		return self.blocks[y][x].center;
+	};
+
+	this.launchAnimation = function () {
+		for (var y = 0; y < height; y++) {
+			for (var x = 0; x < width; x ++) {
+				self.blocks[y][x].elevateAnim();
+			}
+		}
+	};
+
+	this.launchElevate = function (array) {
+		self.blocks[array[2]][array[1]].elevate = true;
+	};
+
 	var initMap = function () {
 		for (var y = 0; y < height; y++) {
 			self.blocks[y] = [];
@@ -19,12 +39,4 @@ module.exports = function Map(game, width, height) {
 	};
 
 	initMap();
-
-	this.getBlock = function (x, y) {
-		return self.blocks[y][x];
-	};
-
-	this.getRealCenter = function (x, y) {
-		return self.blocks[y][x].center;
-	};
 };

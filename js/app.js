@@ -13,8 +13,8 @@ win.height = 1000;
 var game = new Game();
 var socket = new Socket(game);
 
-angular.module('zabylonApp', [])
-	.controller('zabylonCtrl', function ($scope, $timeout) {
+angular.module('threepyApp', [])
+	.controller('threepyCtrl', function ($scope, $timeout) {
 
 		$scope.ui = {
 			connected  : false,

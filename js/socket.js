@@ -40,6 +40,9 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pdi') {
 				game.removePlayer(parse);
 			}
+			else if (cmd === 'pic') {
+				game.map.launchElevate(parse);
+			}
 			//console.log(parse);
 		}
 	});
