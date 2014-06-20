@@ -52,8 +52,14 @@ module.exports = function Socket(game) {
 			else if (cmd === 'eht') {
 				game.hatchEgg(parseInt(parse[1].substr(1)));
 			}
-			else if (cmd === 'ebo' || cmd === 'edi') {
+			else if (cmd === 'ebo') {
 				game.removeEgg(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'edi') {
+				game.moldyEgg(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'pbc') {
+				game.broadcast(parseInt(parse[1].substr(1)));
 			}
 			//console.log(parse);
 		}

@@ -131,18 +131,16 @@ module.exports = function Game() {
 
 	this.hatchEgg = function (num) {
 		var egg = self.getEgg(num);
-		console.log(egg);
 		if (egg) {
 			egg.mesh.scale.multiplyScalar(1.5);
 			egg.outline.scale.multiplyScalar(1.5);
 		}
-		console.log(egg);
 	};
 
 	this.removeEgg = function (num) {
 		var egg = self.getEgg(num);
+		console.log(egg);
 		if (egg) {
-
 			self.eggs.splice(self.eggs.map(function (e) {
 				return e.nb;
 			}).indexOf(num), 1);
@@ -152,6 +150,16 @@ module.exports = function Game() {
 
 			scene.remove(egg.outline);
 			scene.remove(egg.mesh);
+		}
+	};
+
+	this.moldyEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+			egg.mesh.material.color.setHex(0x486325);
+			setTimeout(function () {
+				self.removeEgg(num);
+			}, 10000);
 		}
 	};
 
