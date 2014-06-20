@@ -87,6 +87,22 @@ module.exports = function Game() {
 		self.teams.push(new Team(self, name));
 	};
 
+	this.broadcast = function (numPlayer) {
+		var player = self.getPlayer(numPlayer);
+		if (player) {
+			var geometry = new THREE.SphereGeometry(0.2, 8, 8);
+			var material = new THREE.MeshPhongMaterial({color: 0xffffff });
+			var broadcastMesh = new THREE.Mesh(geometry, material);
+			broadcastMesh.position = player.mesh.position.clone();
+			broadcastMesh.position.z += 1;
+			broadcastMesh.scale.z = 0.1;
+			scene.add(broadcastMesh);
+			setTimeout(function () {
+				scene.remove(broadcastMesh);
+			}, 100);
+		}
+	};
+
 	/*
 	** Player
 	 */
@@ -159,7 +175,6 @@ module.exports = function Game() {
 
 	this.removeEgg = function (num) {
 		var egg = self.getEgg(num);
-		console.log(egg);
 		if (egg) {
 			self.eggs.splice(self.eggs.map(function (e) {
 				return e.nb;

@@ -58,9 +58,7 @@ module.exports = function Player(team, player) {
 
 	this.kill = function () {
 		for (var i = 0; i < 100; i++) {
-			setTimeout(function () {
-				self.mesh.position.z -= 0.05;
-			}, 1);
+			self.mesh.position.z -= 0.05;
 		}
 		team.game.scene.remove(self.mesh);
 		team.game.players.splice(team.game.players.map(function (e) {
