@@ -234,7 +234,6 @@ module.exports = function Game() {
 
 	var mouseDown = function (event) {
 
-		event.preventDefault();
 		isMouseDown = true;
 
 		var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
@@ -268,7 +267,6 @@ module.exports = function Game() {
 	};
 
 	var mouseMove = function (event) {
-
 		event.preventDefault();
 		mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
