@@ -260,7 +260,7 @@ module.exports = function Game() {
 					})
 				};
 
-				obj.material.color.set(0x6262FF);
+				obj.material.color.set(0x4848FC);
 				oldSelected = obj;
 			}
 		}

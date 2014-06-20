@@ -92,7 +92,6 @@ module.exports = function Block(map, x, y) {
 
 	this.elevateResult = function (res) {
 		self.elevate = false;
-
 	};
 
 	function initBlock() {
