@@ -2,7 +2,7 @@ var net = require('net');
 
 //Error caught
 process.on('uncaughtException', function (e) {
-	console.log(e);
+	//console.log(e);
 });
 
 module.exports = function Socket(game) {
@@ -42,6 +42,25 @@ module.exports = function Socket(game) {
 			}
 			else if (cmd === 'pic') {
 				game.map.launchElevate(parse);
+			}
+			else if (cmd === 'pie') {
+				game.map.resultElevate(parse);
+			}
+			else if (cmd === 'enw') {
+				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
+			}
+			else if (cmd === 'eht') {
+				//maybe useless
+				game.hatchEgg(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'ebo') {
+				game.removeEgg(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'edi') {
+				game.moldyEgg(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'pbc') {
+				game.broadcast(parseInt(parse[1].substr(1)));
 			}
 			//console.log(parse);
 		}

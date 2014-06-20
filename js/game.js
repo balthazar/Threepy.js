@@ -53,6 +53,7 @@ module.exports = function Game() {
 	this.teams = [];
 	this.players = [];
 	this.objects = [];
+	this.eggs = [];
 	this.colors = [
 		new THREE.Color(0x0080FF),
 		new THREE.Color(0x009900),
@@ -61,6 +62,19 @@ module.exports = function Game() {
 		new THREE.Color(0xFF9933),
 		new THREE.Color(0x6600CC),
 		new THREE.Color(0x66FFFF)
+	];
+
+	this.teamColor = [
+		0x1A2B91,
+		0x006000,
+		0x2B2B2B,
+		0xB50083,
+		0x930E13,
+		0x650BCF,
+		0xBEDAFF,
+		0x4C3000,
+		0x008BC6,
+		0xE2C600
 	];
 
 	this.selected = null;
@@ -73,6 +87,25 @@ module.exports = function Game() {
 		self.teams.push(new Team(self, name));
 	};
 
+	this.broadcast = function (numPlayer) {
+		var player = self.getPlayer(numPlayer);
+		if (player) {
+			var geometry = new THREE.SphereGeometry(0.2, 8, 8);
+			var material = new THREE.MeshPhongMaterial({color: 0xffffff });
+			var broadcastMesh = new THREE.Mesh(geometry, material);
+			broadcastMesh.position = player.mesh.position.clone();
+			broadcastMesh.position.z += 1;
+			broadcastMesh.scale.z = 0.1;
+			scene.add(broadcastMesh);
+			setTimeout(function () {
+				scene.remove(broadcastMesh);
+			}, 100);
+		}
+	};
+
+	/*
+	** Player
+	 */
 	this.newPlayer = function (array) {
 		var player = {
 			nb   : parseInt(array[1].substr(1)),
@@ -114,6 +147,57 @@ module.exports = function Game() {
 		}
 	};
 
+	/*
+	** Egg
+	 */
+	this.newEgg = function (nb, player, x, y) {
+		var block = self.map.blocks[y][x];
+		var chicken = self.getPlayer(player);
+		var color = self.teamColor[self.teams.indexOf(chicken.team) % 10];
+		if (block) {
+			block.addEgg(nb, color);
+		}
+	};
+
+	this.getEgg = function (num) {
+		return self.eggs[self.eggs.map(function (e) {
+			return e.nb;
+		}).indexOf(num)];
+	};
+
+	this.hatchEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+			egg.mesh.scale.multiplyScalar(1.5);
+			egg.outline.scale.multiplyScalar(1.5);
+		}
+	};
+
+	this.removeEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+			self.eggs.splice(self.eggs.map(function (e) {
+				return e.nb;
+			}).indexOf(num), 1);
+			egg.block.eggs.splice(egg.block.eggs.map(function (e) {
+				return e.nb;
+			}).indexOf(num), 1);
+
+			scene.remove(egg.outline);
+			scene.remove(egg.mesh);
+		}
+	};
+
+	this.moldyEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+			egg.mesh.material.color.setHex(0x486325);
+			setTimeout(function () {
+				self.removeEgg(num);
+			}, 10000);
+		}
+	};
+
 	this.run = function () {
 		document.body.appendChild(renderer.domElement);
 		render();
@@ -131,11 +215,11 @@ module.exports = function Game() {
 
 		if (isMouseDown) {
 			/*
-			camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
-			camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-			camera.lookAt(scene.position);
-			console.log(camera);
-			*/
+			 camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
+			 camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
+			 camera.lookAt(scene.position);
+			 console.log(camera);
+			 */
 		}
 
 		camera.rotation.y = 0;
@@ -165,7 +249,6 @@ module.exports = function Game() {
 
 	var mouseDown = function (event) {
 
-		event.preventDefault();
 		isMouseDown = true;
 
 		var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
@@ -176,7 +259,7 @@ module.exports = function Game() {
 
 		if (intersects.length > 0) {
 			if (oldSelected) {
-				oldSelected.material.color.set(0x0000ff);
+				oldSelected.material.color.set(0x0000FF);
 			}
 			var obj = intersects[0].object;
 			var block = null;
@@ -192,14 +275,13 @@ module.exports = function Game() {
 					})
 				};
 
-				obj.material.color.set(0x00ff00);
+				obj.material.color.set(0x4848FC);
 				oldSelected = obj;
 			}
 		}
 	};
 
 	var mouseMove = function (event) {
-
 		event.preventDefault();
 		mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;

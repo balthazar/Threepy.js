@@ -1,4 +1,5 @@
 var Ressource = require('./ressource.js');
+var Egg = require('./egg.js');
 
 module.exports = function Block(map, x, y) {
 
@@ -25,6 +26,14 @@ module.exports = function Block(map, x, y) {
 		for (var i = 3; i < 10; i++) {
 			self.ressources[i - 3].set(parseInt(array[i]));
 		}
+	};
+
+	this.eggs = [];
+
+	this.addEgg = function (nb, color) {
+		var newEgg = new Egg(self, nb, color);
+		self.eggs.push(newEgg);
+		self.map.game.eggs.push(newEgg);
 	};
 
 	var elevates = [];
@@ -79,6 +88,10 @@ module.exports = function Block(map, x, y) {
 			}
 		}
 
+	};
+
+	this.elevateResult = function (res) {
+		self.elevate = false;
 	};
 
 	function initBlock() {
