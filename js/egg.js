@@ -1,4 +1,4 @@
-module.exports = function Egg(block, nb) {
+module.exports = function Egg(block, nb, color) {
 
 	var self = this;
 	var game = block.map.game;
@@ -6,6 +6,7 @@ module.exports = function Egg(block, nb) {
 	this.nb = nb;
 	this.alive = true;
 	this.block = block;
+	this.color = color;
 	this.mesh = null;
 	this.outline = null;
 
@@ -16,7 +17,7 @@ module.exports = function Egg(block, nb) {
 	var initEgg = function () {
 
 		var geometry = new THREE.SphereGeometry(0.06, 32, 32);
-		var material = new THREE.MeshBasicMaterial({color: 0xffff00});
+		var material = new THREE.MeshBasicMaterial({color: self.color});
 		self.mesh = new THREE.Mesh(geometry, material);
 		self.mesh.position.x = self.block.center.x;
 		self.mesh.position.y = self.block.center.y;

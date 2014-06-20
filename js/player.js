@@ -24,7 +24,7 @@ module.exports = function Player(team, player) {
 	};
 
 	var loader = new THREE.OBJMTLLoader();
-	loader.load('obj/textures/sonic.obj', 'obj/textures/sonic'+ team.game.teams.indexOf(self.team) % 9 +'.mtl', function (object) {
+	loader.load('obj/textures/sonic.obj', 'obj/textures/sonic'+ team.game.teams.indexOf(self.team) % 10 +'.mtl', function (object) {
 		object.scale.x = 0.010;
 		object.scale.y = 0.010;
 		object.scale.z = 0.010;

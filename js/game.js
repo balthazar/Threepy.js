@@ -64,6 +64,32 @@ module.exports = function Game() {
 		new THREE.Color(0x66FFFF)
 	];
 
+	/*
+	 1A2B91 bleu
+	 006000 vert
+	 2B2B2B noir
+	 B50083 rose
+	 930E13 rouge
+	 650BCF violet
+	 BEDAFF blanc
+	 4C3000 marron
+	 008BC6 azure
+	 E2C600 jaune
+	 */
+
+	this.teamColor = [
+		0x1A2B91,
+		0x006000,
+		0x2B2B2B,
+		0xB50083,
+		0x930E13,
+		0x650BCF,
+		0xBEDAFF,
+		0x4C3000,
+		0x008BC6,
+		0xE2C600
+	];
+
 	this.selected = null;
 
 	this.createMap = function (width, height) {
@@ -91,9 +117,9 @@ module.exports = function Game() {
 	this.newEgg = function (nb, player, x, y) {
 		var block = self.map.blocks[y][x];
 		var chicken = self.getPlayer(player);
-		console.log(chicken);
+		var color = self.teamColor[self.teams.indexOf(chicken.team) % 10];
 		if (block) {
-			block.addEgg(nb);
+			block.addEgg(nb, color);
 		}
 	};
 
@@ -105,10 +131,12 @@ module.exports = function Game() {
 
 	this.hatchEgg = function (num) {
 		var egg = self.getEgg(num);
+		console.log(egg);
 		if (egg) {
-			egg.mesh.scale.multiplyScalar(1.1);
-			egg.outline.scale.multiplyScalar(1.1);
+			egg.mesh.scale.multiplyScalar(1.5);
+			egg.outline.scale.multiplyScalar(1.5);
 		}
+		console.log(egg);
 	};
 
 	this.removeEgg = function (num) {
@@ -171,11 +199,11 @@ module.exports = function Game() {
 
 		if (isMouseDown) {
 			/*
-			camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
-			camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-			camera.lookAt(scene.position);
-			console.log(camera);
-			*/
+			 camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
+			 camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
+			 camera.lookAt(scene.position);
+			 console.log(camera);
+			 */
 		}
 
 		camera.rotation.y = 0;
@@ -216,7 +244,7 @@ module.exports = function Game() {
 
 		if (intersects.length > 0) {
 			if (oldSelected) {
-				oldSelected.material.color.set(0x0000ff);
+				oldSelected.material.color.set(0x0000FF);
 			}
 			var obj = intersects[0].object;
 			var block = null;
@@ -232,7 +260,7 @@ module.exports = function Game() {
 					})
 				};
 
-				obj.material.color.set(0x00ff00);
+				obj.material.color.set(0x6262FF);
 				oldSelected = obj;
 			}
 		}

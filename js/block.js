@@ -30,8 +30,8 @@ module.exports = function Block(map, x, y) {
 
 	this.eggs = [];
 
-	this.addEgg = function (nb) {
-		var newEgg = new Egg(self, nb);
+	this.addEgg = function (nb, color) {
+		var newEgg = new Egg(self, nb, color);
 		self.eggs.push(newEgg);
 		self.map.game.eggs.push(newEgg);
 	};
