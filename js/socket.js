@@ -50,10 +50,10 @@ module.exports = function Socket(game) {
 				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
 			}
 			else if (cmd === 'eht') {
-				game.hatchEgg(parseInt(parse[1]));
+				game.hatchEgg(parseInt(parse[1].substr(1)));
 			}
 			else if (cmd === 'ebo' || cmd === 'edi') {
-				game.removeEgg(parseInt(parse[1]));
+				game.removeEgg(parseInt(parse[1].substr(1)));
 			}
 			//console.log(parse);
 		}

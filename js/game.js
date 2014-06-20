@@ -115,6 +115,15 @@ module.exports = function Game() {
 		var egg = self.getEgg(num);
 		if (egg) {
 
+			self.eggs.splice(self.eggs.map(function (e) {
+				return e.nb;
+			}).indexOf(num), 1);
+			egg.block.eggs.splice(egg.block.eggs.map(function (e) {
+				return e.nb;
+			}).indexOf(num), 1);
+
+			scene.remove(egg.outline);
+			scene.remove(egg.mesh);
 		}
 	};
 
