@@ -53,6 +53,7 @@ module.exports = function Game() {
 	this.teams = [];
 	this.players = [];
 	this.objects = [];
+	this.eggs = [];
 	this.colors = [
 		new THREE.Color(0x0080FF),
 		new THREE.Color(0x009900),
@@ -85,6 +86,36 @@ module.exports = function Game() {
 		self.teams[self.teams.map(function (e) {
 			return e.name;
 		}).indexOf(array[6])].addPlayer(player);
+	};
+
+	this.newEgg = function (nb, player, x, y) {
+		var block = self.map.blocks[y][x];
+		var chicken = self.getPlayer(player);
+		console.log(chicken);
+		if (block) {
+			block.addEgg(nb);
+		}
+	};
+
+	this.getEgg = function (num) {
+		return self.eggs[self.eggs.map(function (e) {
+			return e.nb;
+		}).indexOf(num)];
+	};
+
+	this.hatchEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+			egg.mesh.scale.multiplyScalar(1.1);
+			egg.outline.scale.multiplyScalar(1.1);
+		}
+	};
+
+	this.removeEgg = function (num) {
+		var egg = self.getEgg(num);
+		if (egg) {
+
+		}
 	};
 
 	this.getPlayer = function (number) {

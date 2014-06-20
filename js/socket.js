@@ -46,6 +46,15 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pie') {
 				game.map.resultElevate(parse);
 			}
+			else if (cmd === 'enw') {
+				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
+			}
+			else if (cmd === 'eht') {
+				game.hatchEgg(parseInt(parse[1]));
+			}
+			else if (cmd === 'ebo' || cmd === 'edi') {
+				game.removeEgg(parseInt(parse[1]));
+			}
 			//console.log(parse);
 		}
 	});

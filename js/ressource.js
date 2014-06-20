@@ -13,18 +13,6 @@ module.exports = function Ressource(block, type, quantity) {
 		self.reload();
 	};
 
-	this.addOne = function () {
-		self.quantity++;
-	};
-
-	this.removeOne = function () {
-		self.quantity--;
-	};
-
-	this.add = function (quantity) {
-		self.quantity += quantity;
-	};
-
 	this.remove = function (quantity) {
 		self.quantity -= quantity;
 	};
