@@ -63,11 +63,11 @@
 				<a class="close nodrag" ng-click="quit()"></a>
 			</span>
 		</nav>
-		<section ng-if="!ui.connected" class="flex centered-items full-height">
+		<section ng-if="!ui.connected" class="flex centered-items full-height intro">
 			<form ng-submit="connect()">
 				<input type="text" placeholder="Host" ng-model="ui.connectHost">
 				<input type="number" placeholder="Port" ng-model="ui.connectPort">
-				<input type="submit" value="Valider">
+				<input type="submit" value="Connect">
 				<p>{{ ui.msg }}</p>
 			</form>
 		</section>

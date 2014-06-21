@@ -316,14 +316,12 @@ module.exports = function Game(stats) {
 	};
 
 	var mouseMove = function (event) {
-		event.preventDefault();
 		mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
 	};
 
-	var mouseUp = function (event) {
-		event.preventDefault();
+	var mouseUp = function () {
 		isMouseDown = false;
 	};
 
