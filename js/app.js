@@ -4,13 +4,14 @@ global.document = document;
 var gui = require('nw.gui');
 var Game = require('./js/game.js');
 var Socket = require('./js/socket.js');
+var stats = new Stats();
 
 var win = gui.Window.get();
 win.title = "Threepy.js";
 win.width = 2000;
 win.height = 1000;
 
-var game = new Game();
+var game = new Game(stats);
 var socket = new Socket(game);
 
 angular.module('threepyApp', [])
@@ -39,6 +40,7 @@ angular.module('threepyApp', [])
 				setInterval(function () {
 					$scope.$apply(function () {
 						$scope.selectedInfos = game.selected;
+						$scope.resume = game.resume;
 					});
 				}, 100);
 

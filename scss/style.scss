@@ -1,4 +1,5 @@
 @import 'compass/css3';
+@import 'compass/reset';
 @import 'compass/css3/transition';
 
 * {
@@ -18,6 +19,14 @@ input, select, textarea, button, i {
 	@include user-select(text);
 }
 
+.drag {
+	-webkit-app-region: drag;
+}
+
+.nodrag {
+	-webkit-app-region: no-drag;
+}
+
 body {
 	margin: 0;
 	> nav {
@@ -29,14 +38,45 @@ body {
 			height: 100%;
 		}
 		form {
-			margin-top: 25px;
+			padding: 20px;
+			margin: 0 auto;
+			width: 300px;
+			input {
+				width: 100%;
+				background-color: transparent;
+				color: white;
+				border: 1px solid rgba(white, .3);
+				padding: 10px 10px;
+				@include border-radius(2px);
+				&[type="submit"] {
+					cursor: pointer;
+					&:hover {
+						background-color: rgba(70, 70, 177, .5);;
+					}
+				}
+				&:hover {
+					border-color: rgba(white, .6);
+				}
+			}
 		}
 	}
 }
 
+.flex {
+	display: flex;
+	&.centered-items {
+		align-items: center;
+	}
+}
+
+.full-height {
+	height: 100%;
+}
+
+/* Infobox */
 .infos {
 	position: absolute;
-	border: 1px solid rgba(255, 255, 255, 0.5);
+	background-color: rgba(black, .6);
 	padding: 20px;
 	top: 20px;
 	left: 20px;
@@ -46,16 +86,40 @@ body {
 		list-style-type: none;
 		padding: 0;
 	}
+	section {
+		&.selectedinfos {
+			padding-right: 20px;
+			border-right: 1px solid rgba(white, .2);
+		}
+		&:first-child {
+			margin-right: 20px;
+			> * {
+				margin-bottom : 10px;
+			}
+			ul {
+				padding-top: 5px;
+			}
+		}
+		&:last-child {
+			.teams {
+				.team {
+					min-width: 50px;
+					margin-bottom: 5px;
+					> * {
+						margin-right: 5px;
+					}
+					.color {
+						width: 15px;
+						height: 15px;
+						border: 1px solid rgba(white, .3);
+					}
+				}
+			}
+		}
+	}
 }
 
-.drag {
-	-webkit-app-region: drag;
-}
-
-.nodrag {
-	-webkit-app-region: no-drag;
-}
-
+/* Navbar with buttons */
 nav {
 	z-index: 100;
 	position: absolute;
@@ -108,4 +172,11 @@ nav {
 			opacity: 1.0;
 		}
 	}
+}
+
+/* Stats */
+#stats {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
 }

@@ -1,7 +1,7 @@
 var Map = require('./map.js');
 var Team = require('./team.js');
 
-module.exports = function Game() {
+module.exports = function Game(stats) {
 
 	var self = this;
 	var window = global.window;
@@ -65,19 +65,21 @@ module.exports = function Game() {
 	];
 
 	this.teamColor = [
-		0x1A2B91,
-		0x006000,
-		0x2B2B2B,
-		0xB50083,
-		0x930E13,
-		0x650BCF,
-		0xBEDAFF,
-		0x4C3000,
-		0x008BC6,
-		0xE2C600
+		new THREE.Color(0x1A2B91),
+		new THREE.Color(0x006000),
+		new THREE.Color(0x2B2B2B),
+		new THREE.Color(0xB50083),
+		new THREE.Color(0x930E13),
+		new THREE.Color(0x650BCF),
+		new THREE.Color(0xBEDAFF),
+		new THREE.Color(0x4C3000),
+		new THREE.Color(0x008BC6),
+		new THREE.Color(0xE2C600)
 	];
 
+	//tools for better view
 	this.selected = null;
+	this.resume = null;
 
 	this.createMap = function (width, height) {
 		self.map = new Map(self, width, height);
@@ -90,17 +92,44 @@ module.exports = function Game() {
 	this.broadcast = function (numPlayer) {
 		var player = self.getPlayer(numPlayer);
 		if (player) {
-			var geometry = new THREE.SphereGeometry(0.2, 8, 8);
-			var material = new THREE.MeshPhongMaterial({color: 0xffffff });
+			var geometry = new THREE.SphereGeometry(0.2 + (player.level * 0.02), 8, 8);
+			var material = new THREE.MeshPhongMaterial({ color: 0xffffff });
 			var broadcastMesh = new THREE.Mesh(geometry, material);
 			broadcastMesh.position = player.mesh.position.clone();
-			broadcastMesh.position.z += 1;
+			broadcastMesh.position.z += 0.6 + (player.level * 0.2);
 			broadcastMesh.scale.z = 0.1;
 			scene.add(broadcastMesh);
 			setTimeout(function () {
 				scene.remove(broadcastMesh);
-			}, 100);
+			}, 10);
 		}
+	};
+
+	var aggregateByLevel = function (players) {
+		var res = [],
+			tmp = {};
+		for (var i = 0; i < players.length; i++) {
+			if (!tmp[players[i].level]) {
+				tmp[players[i].level] = [];
+			}
+			tmp[players[i].level].push(players[i]);
+		}
+		for (var level in tmp) {
+			res.push({ level: level, nb: tmp[level].length });
+		}
+		return res;
+	};
+
+	this.reloadData = function () {
+		self.resume = {
+			teams: self.teams.map(function (e) {
+				return {
+					name: e.name,
+					color: self.teamColor[self.teams.indexOf(e) % 10].getHexString(),
+					levels: aggregateByLevel(e.players)
+				};
+			})
+		};
 	};
 
 	/*
@@ -118,6 +147,8 @@ module.exports = function Game() {
 		self.teams[self.teams.map(function (e) {
 			return e.name;
 		}).indexOf(array[6])].addPlayer(player);
+
+		self.reloadData();
 	};
 
 	this.getPlayer = function (number) {
@@ -199,6 +230,8 @@ module.exports = function Game() {
 	};
 
 	this.run = function () {
+		stats.setMode(1);
+		document.body.appendChild(stats.domElement);
 		document.body.appendChild(renderer.domElement);
 		render();
 	};
@@ -239,6 +272,7 @@ module.exports = function Game() {
 
 		window.requestAnimationFrame(render);
 		renderer.render(scene, camera);
+		stats.update();
 	};
 
 	var windowResize = function () {
