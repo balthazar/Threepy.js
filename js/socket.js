@@ -1,18 +1,20 @@
 var net = require('net');
 
-//Error caught
-process.on('uncaughtException', function (e) {
-	//console.log(e);
-});
-
 module.exports = function Socket(game) {
 
 	var self = this;
 
-	var client = new net.Socket();
+	var client = new net.connect();
 
 	this.client = client;
 	this.game = game;
+	this.connected = false;
+
+	process.on('uncaughtException', function (e) {
+		if (e.code === 'ECONNREFUSED') {
+			self.connected = false;
+		}
+	});
 
 	self.client.on('data', function (data) {
 		var res = data.toString().split('\n');
@@ -50,7 +52,6 @@ module.exports = function Socket(game) {
 				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
 			}
 			else if (cmd === 'eht') {
-				//maybe useless
 				game.hatchEgg(parseInt(parse[1].substr(1)));
 			}
 			else if (cmd === 'ebo') {
@@ -66,10 +67,13 @@ module.exports = function Socket(game) {
 	});
 
 	this.connect = function (host, port) {
-
 		self.client.connect(port, host, function () {
 			self.client.write('GRAPHIC\n');
+			self.connected = true;
 		});
+	};
+
+	this.changeTime = function (newTime) {
 
 	};
 

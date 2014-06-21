@@ -29,7 +29,8 @@ module.exports = function (grunt) {
 				mac           : true,
 				win           : false,
 				linux32       : false,
-				linux64       : false
+				linux64       : false,
+				mac_icns      : 'img/42.icns'
 			},
 			src    : ['./**/*' ]
 		},

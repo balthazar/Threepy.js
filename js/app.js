@@ -32,19 +32,27 @@ angular.module('threepyApp', [])
 		$scope.connect = function () {
 
 			socket.connect($scope.ui.connectHost, $scope.ui.connectPort);
-			$scope.ui.connected = true;
+
 			$timeout(function () {
 
-				game.run();
+				if (socket.connected) {
 
-				setInterval(function () {
-					$scope.$apply(function () {
-						$scope.selectedInfos = game.selected;
-						$scope.resume = game.resume;
-					});
-				}, 100);
+					$scope.ui.connected = true;
 
-			});
+					game.run();
+
+					setInterval(function () {
+						$scope.$apply(function () {
+							$scope.selectedInfos = game.selected;
+							$scope.resume = game.resume;
+						});
+					}, 100);
+				}
+				else {
+
+				}
+
+			}, 100);
 		};
 
 		$scope.minimize = function () {
