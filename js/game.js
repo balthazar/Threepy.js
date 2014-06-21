@@ -108,7 +108,13 @@ module.exports = function Game() {
 	this.reloadData = function () {
 		self.resume = {
 			teams: self.teams.map(function (e) {
-				return { name: e.name, color: self.teamColor[self.teams.indexOf(e) % 9].getHexString() };
+				return {
+					name: e.name,
+					color: self.teamColor[self.teams.indexOf(e) % 9].getHexString(),
+					players: e.players.map(function (e) {
+						return { nb: e.nb, level: e.level };
+					})
+				};
 			})
 		};
 	};

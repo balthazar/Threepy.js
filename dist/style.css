@@ -45,9 +45,11 @@ body > section form {
   margin-top: 25px;
 }
 
-/* line 37, ../scss/style.scss */
+/* Infobox */
+/* line 38, ../scss/style.scss */
 .infos {
   position: absolute;
+  display: flex;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.6);
   padding: 20px;
@@ -56,23 +58,39 @@ body > section form {
   font-family: Arial;
   font-size: 13px;
 }
-/* line 46, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 .infos ul {
   list-style-type: none;
   padding: 0;
 }
+/* line 53, ../scss/style.scss */
+.infos section:first-child {
+  margin-right: 20px;
+}
+/* line 58, ../scss/style.scss */
+.infos section:last-child .teams .team {
+  min-width: 50px;
+  margin-bottom: 5px;
+}
+/* line 61, ../scss/style.scss */
+.infos section:last-child .teams .team .color {
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-/* line 52, ../scss/style.scss */
+/* line 72, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 56, ../scss/style.scss */
+/* line 76, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
-/* line 60, ../scss/style.scss */
+/* Navbar with buttons */
+/* line 81, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -87,11 +105,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 70, ../scss/style.scss */
+/* line 91, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 73, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -116,27 +134,27 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 91, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 93, ../scss/style.scss */
+/* line 114, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 97, ../scss/style.scss */
+/* line 118, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 99, ../scss/style.scss */
+/* line 120, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 104, ../scss/style.scss */
+/* line 125, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 108, ../scss/style.scss */
+/* line 129, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }

@@ -66,12 +66,16 @@
 			<section ng-if="selectedInfos">
 				<p>[ {{ selectedInfos.x }},{{ selectedInfos.y }} ]</p>
 				<span>Ressources:</span>
-				<ul>
+				<ul class="ressources">
 					<li ng-repeat="ressource in selectedInfos.res">{{ ressourcesNames[ressource.type] }} x{{ ressource.quantity }}</li>
 				</ul>
 			</section>
 			<section>
-				{{ resume }}
+				<ul class="teams">
+					<li class="team" ng-repeat="team in resume.teams">
+						<div class="color" ng-style="{ background: '#' + team.color }"></div>
+					</li>
+				</ul>
 			</section>
 		</section>
 	</body>
