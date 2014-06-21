@@ -41,6 +41,7 @@
 		</section>
 		<section ng-if="ui.connected" class="infos flex">
 			<section class="marged" ng-class="{ borded: selectedInfos }">
+				<button class="danger">Disconnect</button>
 				<p>Server time: {{ }}</p>
 				<input type="range" min="10" max="100">
 			</section>

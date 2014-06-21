@@ -93,58 +93,76 @@ input, select, textarea, button {
 }
 
 /* line 25, ../scss/style.scss */
+button, input[type="range"], input[type="button"], input[type="submit"] {
+  cursor: pointer;
+}
+
+/* line 29, ../scss/style.scss */
+button.danger {
+  background: rgba(255, 16, 16, 0.7);
+  border: 1px solid #a50000;
+  padding: 5px 10px;
+  border-radius: 2px;
+  color: white;
+}
+/* line 35, ../scss/style.scss */
+button.danger:hover {
+  background-color: rgba(255, 16, 16, 0.8);
+}
+
+/* line 40, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 29, ../scss/style.scss */
+/* line 44, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
-/* line 33, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 .flex {
   display: flex;
 }
-/* line 35, ../scss/style.scss */
+/* line 50, ../scss/style.scss */
 .flex.centered-items {
   align-items: center;
 }
 
-/* line 40, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 .full-height {
   height: 100%;
 }
 
-/* line 44, ../scss/style.scss */
+/* line 59, ../scss/style.scss */
 .intro {
   background: url("../img/back.jpg");
   background-size: cover;
 }
 
-/* line 49, ../scss/style.scss */
+/* line 64, ../scss/style.scss */
 body {
   margin: 0;
 }
-/* line 51, ../scss/style.scss */
+/* line 66, ../scss/style.scss */
 body > nav {
   position: fixed;
 }
-/* line 54, ../scss/style.scss */
+/* line 69, ../scss/style.scss */
 body > section {
   color: white;
 }
-/* line 56, ../scss/style.scss */
+/* line 71, ../scss/style.scss */
 body > section canvas {
   height: 100%;
 }
-/* line 59, ../scss/style.scss */
+/* line 74, ../scss/style.scss */
 body > section form {
   padding: 20px;
   margin: 0 auto;
   width: 300px;
 }
-/* line 63, ../scss/style.scss */
+/* line 78, ../scss/style.scss */
 body > section form input {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
@@ -155,19 +173,15 @@ body > section form input {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 70, ../scss/style.scss */
-body > section form input[type="submit"] {
-  cursor: pointer;
-}
-/* line 72, ../scss/style.scss */
+/* line 86, ../scss/style.scss */
 body > section form input[type="submit"]:hover {
   background-color: rgba(70, 70, 177, 0.5);
 }
-/* line 76, ../scss/style.scss */
+/* line 90, ../scss/style.scss */
 body > section form input:hover {
   border-color: rgba(255, 255, 255, 0.6);
 }
-/* line 80, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 body > section form p {
   text-align: center;
   font-size: 13px;
@@ -175,7 +189,7 @@ body > section form p {
 }
 
 /* Infobox */
-/* line 90, ../scss/style.scss */
+/* line 104, ../scss/style.scss */
 .infos {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.6);
@@ -184,46 +198,50 @@ body > section form p {
   left: 20px;
   font-size: 13px;
 }
-/* line 97, ../scss/style.scss */
+/* line 111, ../scss/style.scss */
 .infos ul {
   list-style-type: none;
   padding: 0;
 }
-/* line 103, ../scss/style.scss */
+/* line 117, ../scss/style.scss */
+.infos section:first-child button {
+  margin-bottom: 10px;
+}
+/* line 122, ../scss/style.scss */
 .infos section:nth-child(2) > * {
   margin-bottom: 10px;
 }
-/* line 106, ../scss/style.scss */
+/* line 125, ../scss/style.scss */
 .infos section:nth-child(2) ul {
   padding-top: 5px;
 }
-/* line 112, ../scss/style.scss */
+/* line 131, ../scss/style.scss */
 .infos section:last-child .teams .team {
   min-width: 50px;
   margin-bottom: 5px;
 }
-/* line 115, ../scss/style.scss */
+/* line 134, ../scss/style.scss */
 .infos section:last-child .teams .team > * {
   margin-right: 5px;
 }
-/* line 118, ../scss/style.scss */
+/* line 137, ../scss/style.scss */
 .infos section:last-child .teams .team .color {
   width: 15px;
   height: 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-/* line 126, ../scss/style.scss */
+/* line 145, ../scss/style.scss */
 .infos section.borded {
   padding-right: 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* line 130, ../scss/style.scss */
+/* line 149, ../scss/style.scss */
 .infos section.marged {
   margin-right: 20px;
 }
 
 /* Navbar with buttons */
-/* line 137, ../scss/style.scss */
+/* line 156, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -238,11 +256,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 147, ../scss/style.scss */
+/* line 166, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 150, ../scss/style.scss */
+/* line 169, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -267,33 +285,33 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 168, ../scss/style.scss */
+/* line 187, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 170, ../scss/style.scss */
+/* line 189, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 174, ../scss/style.scss */
+/* line 193, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 176, ../scss/style.scss */
+/* line 195, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 181, ../scss/style.scss */
+/* line 200, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 185, ../scss/style.scss */
+/* line 204, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }
 
 /* Stats */
-/* line 192, ../scss/style.scss */
+/* line 211, ../scss/style.scss */
 #stats {
   position: absolute;
   bottom: 5px;
