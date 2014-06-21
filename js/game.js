@@ -105,15 +105,28 @@ module.exports = function Game() {
 		}
 	};
 
+	var aggregateByLevel = function (players) {
+		var res = [],
+			tmp = {};
+		for (var i = 0; i < players.length; i++) {
+			if (!tmp[players[i].level]) {
+				tmp[players[i].level] = [];
+			}
+			tmp[players[i].level].push(players[i]);
+		}
+		for (var level in tmp) {
+			res.push({ level: level, nb: tmp[level].length });
+		}
+		return res;
+	};
+
 	this.reloadData = function () {
 		self.resume = {
 			teams: self.teams.map(function (e) {
 				return {
 					name: e.name,
 					color: self.teamColor[self.teams.indexOf(e) % 10].getHexString(),
-					players: e.players.map(function (e) {
-						return { nb: e.nb, level: e.level };
-					})
+					levels: aggregateByLevel(e.players)
 				};
 			})
 		};

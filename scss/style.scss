@@ -97,6 +97,9 @@ body {
 				.team {
 					min-width: 50px;
 					margin-bottom: 5px;
+					> * {
+						margin-right: 5px;
+					}
 					.color {
 						width: 15px;
 						height: 15px;

@@ -44,6 +44,7 @@
 		<script src="dist/ShaderParticles.min.js" type="text/javascript"></script>
 
 		<script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
+		<script src="bower_components/stats.js/build/stats.min.js" type="text/javascript"></script>
 		<script src="js/app.js" type="text/javascript"></script>
 
 	</head>
@@ -72,8 +73,10 @@
 			</section>
 			<section>
 				<ul class="teams">
-					<li class="team" ng-repeat="team in resume.teams">
+					<li class="team flex" ng-repeat="team in resume.teams">
 						<div class="color" ng-style="{ background: '#' + team.color }"></div>
+						<span>{{ team.name }}</span>
+						<p class="levels" ng-if="team.levels.length">(<span ng-repeat="level in team.levels">LVL {{ level.level }}x{{ level.nb }}<span ng-if="!$last">, </span></span>)</p>
 					</li>
 				</ul>
 			</section>
