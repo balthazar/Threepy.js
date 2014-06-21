@@ -32,9 +32,23 @@ body {
 		form {
 			padding: 20px;
 			margin: 0 auto;
-			width: 200px;
+			width: 300px;
 			input {
 				width: 100%;
+				background-color: transparent;
+				color: white;
+				border: 1px solid rgba(white, .3);
+				padding: 10px 10px;
+				@include border-radius(2px);
+				&[type="submit"] {
+					cursor: pointer;
+					&:hover {
+						background-color: rgba(70, 70, 177, .5);;
+					}
+				}
+				&:hover {
+					border-color: rgba(white, .6);
+				}
 			}
 		}
 	}
@@ -54,7 +68,6 @@ body {
 /* Infobox */
 .infos {
 	position: absolute;
-	border: 1px solid rgba(white, .5);
 	background-color: rgba(black, .6);
 	padding: 20px;
 	top: 20px;
@@ -66,6 +79,10 @@ body {
 		padding: 0;
 	}
 	section {
+		&.selectedinfos {
+			padding-right: 20px;
+			border-right: 1px solid rgba(white, .2);
+		}
 		&:first-child {
 			margin-right: 20px;
 			> * {
