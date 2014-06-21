@@ -10,6 +10,7 @@ var win = gui.Window.get();
 win.title = "Threepy.js";
 win.width = 2000;
 win.height = 1000;
+win.moveTo(300, 200);
 
 var game = new Game(stats);
 var socket = new Socket(game);

@@ -189,41 +189,41 @@ body > section form p {
   list-style-type: none;
   padding: 0;
 }
-/* line 102, ../scss/style.scss */
-.infos section.selectedinfos {
-  padding-right: 20px;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-}
-/* line 106, ../scss/style.scss */
-.infos section:first-child {
-  margin-right: 20px;
-}
-/* line 108, ../scss/style.scss */
-.infos section:first-child > * {
+/* line 103, ../scss/style.scss */
+.infos section:nth-child(2) > * {
   margin-bottom: 10px;
 }
-/* line 111, ../scss/style.scss */
-.infos section:first-child ul {
+/* line 106, ../scss/style.scss */
+.infos section:nth-child(2) ul {
   padding-top: 5px;
 }
-/* line 117, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 .infos section:last-child .teams .team {
   min-width: 50px;
   margin-bottom: 5px;
 }
-/* line 120, ../scss/style.scss */
+/* line 115, ../scss/style.scss */
 .infos section:last-child .teams .team > * {
   margin-right: 5px;
 }
-/* line 123, ../scss/style.scss */
+/* line 118, ../scss/style.scss */
 .infos section:last-child .teams .team .color {
   width: 15px;
   height: 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+/* line 126, ../scss/style.scss */
+.infos section.borded {
+  padding-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* line 130, ../scss/style.scss */
+.infos section.marged {
+  margin-right: 20px;
+}
 
 /* Navbar with buttons */
-/* line 135, ../scss/style.scss */
+/* line 137, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -238,11 +238,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 145, ../scss/style.scss */
+/* line 147, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 148, ../scss/style.scss */
+/* line 150, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -267,33 +267,33 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 166, ../scss/style.scss */
+/* line 168, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 168, ../scss/style.scss */
+/* line 170, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 172, ../scss/style.scss */
+/* line 174, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 174, ../scss/style.scss */
+/* line 176, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 179, ../scss/style.scss */
+/* line 181, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 183, ../scss/style.scss */
+/* line 185, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }
 
 /* Stats */
-/* line 190, ../scss/style.scss */
+/* line 192, ../scss/style.scss */
 #stats {
   position: absolute;
   bottom: 5px;

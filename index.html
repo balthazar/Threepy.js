@@ -72,7 +72,10 @@
 			</form>
 		</section>
 		<section ng-if="ui.connected" class="infos flex">
-			<section ng-if="selectedInfos" class="selectedinfos">
+			<section class="marged" ng-class="{ borded: selectedInfos }">
+				<input type="range" min="10" max="100">
+			</section>
+			<section ng-if="selectedInfos" class="marged" ng-class="{ borded: selectedInfos && resume }">
 				<p>[ {{ selectedInfos.x }},{{ selectedInfos.y }} ]</p>
 				<span>Ressources:</span>
 				<ul class="ressources">
