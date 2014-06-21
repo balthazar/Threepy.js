@@ -62,7 +62,6 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pbc') {
 				game.broadcast(parseInt(parse[1].substr(1)));
 			}
-			//console.log(parse);
 		}
 	});
 

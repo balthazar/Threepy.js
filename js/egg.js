@@ -17,10 +17,10 @@ module.exports = function Egg(block, nb, color) {
 	var initEgg = function () {
 
 		var geometry = new THREE.SphereGeometry(0.06, 32, 32);
-		var material = new THREE.MeshBasicMaterial({color: self.color});
+		var material = new THREE.MeshBasicMaterial({ color: self.color });
 		self.mesh = new THREE.Mesh(geometry, material);
-		self.mesh.position.x = self.block.center.x;
-		self.mesh.position.y = self.block.center.y;
+		self.mesh.position.x = self.block.center.x + 0.3;
+		self.mesh.position.y = self.block.center.y + 0.3;
 		self.mesh.position.z = 0.55;
 		self.mesh.scale.z = 1.4;
 

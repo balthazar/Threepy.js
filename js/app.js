@@ -39,6 +39,7 @@ angular.module('threepyApp', [])
 				setInterval(function () {
 					$scope.$apply(function () {
 						$scope.selectedInfos = game.selected;
+						$scope.resume = game.resume;
 					});
 				}, 100);
 
