@@ -19,6 +19,14 @@ input, select, textarea, button, i {
 	@include user-select(text);
 }
 
+.drag {
+	-webkit-app-region: drag;
+}
+
+.nodrag {
+	-webkit-app-region: no-drag;
+}
+
 body {
 	margin: 0;
 	> nav {
@@ -111,14 +119,6 @@ body {
 	}
 }
 
-.drag {
-	-webkit-app-region: drag;
-}
-
-.nodrag {
-	-webkit-app-region: no-drag;
-}
-
 /* Navbar with buttons */
 nav {
 	z-index: 100;
@@ -172,4 +172,11 @@ nav {
 			opacity: 1.0;
 		}
 	}
+}
+
+/* Stats */
+#stats {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
 }

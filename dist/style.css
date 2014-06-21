@@ -90,28 +90,38 @@ input, select, textarea, button, i {
 }
 
 /* line 22, ../scss/style.scss */
+.drag {
+  -webkit-app-region: drag;
+}
+
+/* line 26, ../scss/style.scss */
+.nodrag {
+  -webkit-app-region: no-drag;
+}
+
+/* line 30, ../scss/style.scss */
 body {
   margin: 0;
 }
-/* line 24, ../scss/style.scss */
+/* line 32, ../scss/style.scss */
 body > nav {
   position: fixed;
 }
-/* line 27, ../scss/style.scss */
+/* line 35, ../scss/style.scss */
 body > section {
   color: white;
 }
-/* line 29, ../scss/style.scss */
+/* line 37, ../scss/style.scss */
 body > section canvas {
   height: 100%;
 }
-/* line 32, ../scss/style.scss */
+/* line 40, ../scss/style.scss */
 body > section form {
   padding: 20px;
   margin: 0 auto;
   width: 300px;
 }
-/* line 36, ../scss/style.scss */
+/* line 44, ../scss/style.scss */
 body > section form input {
   width: 100%;
   background-color: transparent;
@@ -122,35 +132,35 @@ body > section form input {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 43, ../scss/style.scss */
+/* line 51, ../scss/style.scss */
 body > section form input[type="submit"] {
   cursor: pointer;
 }
-/* line 45, ../scss/style.scss */
+/* line 53, ../scss/style.scss */
 body > section form input[type="submit"]:hover {
   background-color: rgba(70, 70, 177, 0.5);
 }
-/* line 49, ../scss/style.scss */
+/* line 57, ../scss/style.scss */
 body > section form input:hover {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* line 57, ../scss/style.scss */
+/* line 65, ../scss/style.scss */
 .flex {
   display: flex;
 }
-/* line 59, ../scss/style.scss */
+/* line 67, ../scss/style.scss */
 .flex.centered-items {
   align-items: center;
 }
 
-/* line 64, ../scss/style.scss */
+/* line 72, ../scss/style.scss */
 .full-height {
   height: 100%;
 }
 
 /* Infobox */
-/* line 69, ../scss/style.scss */
+/* line 77, ../scss/style.scss */
 .infos {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.6);
@@ -160,52 +170,42 @@ body > section form input:hover {
   font-family: Arial;
   font-size: 13px;
 }
-/* line 77, ../scss/style.scss */
+/* line 85, ../scss/style.scss */
 .infos ul {
   list-style-type: none;
   padding: 0;
 }
-/* line 82, ../scss/style.scss */
+/* line 90, ../scss/style.scss */
 .infos section.selectedinfos {
   padding-right: 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* line 86, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 .infos section:first-child {
   margin-right: 20px;
 }
-/* line 88, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
 .infos section:first-child > * {
   margin-bottom: 10px;
 }
-/* line 91, ../scss/style.scss */
+/* line 99, ../scss/style.scss */
 .infos section:first-child ul {
   padding-top: 5px;
 }
-/* line 97, ../scss/style.scss */
+/* line 105, ../scss/style.scss */
 .infos section:last-child .teams .team {
   min-width: 50px;
   margin-bottom: 5px;
 }
-/* line 100, ../scss/style.scss */
+/* line 108, ../scss/style.scss */
 .infos section:last-child .teams .team > * {
   margin-right: 5px;
 }
-/* line 103, ../scss/style.scss */
+/* line 111, ../scss/style.scss */
 .infos section:last-child .teams .team .color {
   width: 15px;
   height: 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* line 114, ../scss/style.scss */
-.drag {
-  -webkit-app-region: drag;
-}
-
-/* line 118, ../scss/style.scss */
-.nodrag {
-  -webkit-app-region: no-drag;
 }
 
 /* Navbar with buttons */
@@ -276,4 +276,12 @@ nav a.close:hover {
 /* line 171, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
+}
+
+/* Stats */
+/* line 178, ../scss/style.scss */
+#stats {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }

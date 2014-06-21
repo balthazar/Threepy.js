@@ -1,7 +1,7 @@
 var Map = require('./map.js');
 var Team = require('./team.js');
 
-module.exports = function Game() {
+module.exports = function Game(stats) {
 
 	var self = this;
 	var window = global.window;
@@ -230,6 +230,8 @@ module.exports = function Game() {
 	};
 
 	this.run = function () {
+		stats.setMode(1);
+		document.body.appendChild(stats.domElement);
 		document.body.appendChild(renderer.domElement);
 		render();
 	};
@@ -270,6 +272,7 @@ module.exports = function Game() {
 
 		window.requestAnimationFrame(render);
 		renderer.render(scene, camera);
+		stats.update();
 	};
 
 	var windowResize = function () {
