@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 			dist: {
 				options: {
 					sassDir: 'scss',
-					cssDir : 'dist'
+					cssDir : 'css'
 				}
 			}
 		},

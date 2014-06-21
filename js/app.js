@@ -20,7 +20,8 @@ angular.module('threepyApp', [])
 		$scope.ui = {
 			connected  : false,
 			connectHost: '127.0.0.1',
-			connectPort: 4040
+			connectPort: 4040,
+			msg        : ''
 		};
 
 		$scope.selectedInfos = null;
@@ -32,12 +33,14 @@ angular.module('threepyApp', [])
 		$scope.connect = function () {
 
 			socket.connect($scope.ui.connectHost, $scope.ui.connectPort);
+			$scope.ui.msg = 'Processing authentification...';
 
 			$timeout(function () {
 
 				if (socket.connected) {
 
 					$scope.ui.connected = true;
+					$scope.ui.msg = '';
 
 					game.run();
 
@@ -49,7 +52,7 @@ angular.module('threepyApp', [])
 					}, 100);
 				}
 				else {
-
+					$scope.ui.msg = 'Error during server connection.';
 				}
 
 			}, 100);
