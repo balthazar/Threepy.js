@@ -1,10 +1,75 @@
-/* line 4, ../scss/style.scss */
+/* line 5, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../../../nfs/zfs-student-5/users/2013/bgronon/.brew/Cellar/ruby/2.1.1_1/lib/ruby/gems/2.1.0/gems/compass-core-1.0.0.alpha.19/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 5, ../scss/style.scss */
 * {
   outline: none;
   box-sizing: border-box;
 }
 
-/* line 9, ../scss/style.scss */
+/* line 10, ../scss/style.scss */
 html, body {
   overflow: hidden;
   height: 100%;
@@ -16,7 +81,7 @@ html, body {
   user-select: none;
 }
 
-/* line 17, ../scss/style.scss */
+/* line 18, ../scss/style.scss */
 input, select, textarea, button, i {
   -moz-user-select: text;
   -ms-user-select: text;
@@ -24,32 +89,51 @@ input, select, textarea, button, i {
   user-select: text;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 22, ../scss/style.scss */
 body {
   margin: 0;
 }
-/* line 23, ../scss/style.scss */
+/* line 24, ../scss/style.scss */
 body > nav {
   position: fixed;
 }
-/* line 26, ../scss/style.scss */
+/* line 27, ../scss/style.scss */
 body > section {
   color: white;
 }
-/* line 28, ../scss/style.scss */
+/* line 29, ../scss/style.scss */
 body > section canvas {
   height: 100%;
 }
-/* line 31, ../scss/style.scss */
+/* line 32, ../scss/style.scss */
 body > section form {
-  margin-top: 25px;
+  padding: 20px;
+  margin: 0 auto;
+  width: 200px;
+}
+/* line 36, ../scss/style.scss */
+body > section form input {
+  width: 100%;
+}
+
+/* line 43, ../scss/style.scss */
+.flex {
+  display: flex;
+}
+/* line 45, ../scss/style.scss */
+.flex.centered-items {
+  align-items: center;
+}
+
+/* line 50, ../scss/style.scss */
+.full-height {
+  height: 100%;
 }
 
 /* Infobox */
-/* line 38, ../scss/style.scss */
+/* line 55, ../scss/style.scss */
 .infos {
   position: absolute;
-  display: flex;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.6);
   padding: 20px;
@@ -58,39 +142,47 @@ body > section form {
   font-family: Arial;
   font-size: 13px;
 }
-/* line 48, ../scss/style.scss */
+/* line 64, ../scss/style.scss */
 .infos ul {
   list-style-type: none;
   padding: 0;
 }
-/* line 53, ../scss/style.scss */
+/* line 69, ../scss/style.scss */
 .infos section:first-child {
   margin-right: 20px;
 }
-/* line 58, ../scss/style.scss */
+/* line 71, ../scss/style.scss */
+.infos section:first-child > * {
+  margin-bottom: 10px;
+}
+/* line 74, ../scss/style.scss */
+.infos section:first-child ul {
+  padding-top: 5px;
+}
+/* line 80, ../scss/style.scss */
 .infos section:last-child .teams .team {
   min-width: 50px;
   margin-bottom: 5px;
 }
-/* line 61, ../scss/style.scss */
+/* line 83, ../scss/style.scss */
 .infos section:last-child .teams .team .color {
   width: 15px;
   height: 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* line 72, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 76, ../scss/style.scss */
+/* line 98, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
 /* Navbar with buttons */
-/* line 81, ../scss/style.scss */
+/* line 103, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -105,11 +197,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 91, ../scss/style.scss */
+/* line 113, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 94, ../scss/style.scss */
+/* line 116, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -134,27 +226,27 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 112, ../scss/style.scss */
+/* line 134, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 114, ../scss/style.scss */
+/* line 136, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 118, ../scss/style.scss */
+/* line 140, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 120, ../scss/style.scss */
+/* line 142, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 125, ../scss/style.scss */
+/* line 147, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 129, ../scss/style.scss */
+/* line 151, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }

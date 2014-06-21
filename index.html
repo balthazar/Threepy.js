@@ -55,14 +55,14 @@
 				<a class="close nodrag" ng-click="quit()"></a>
 			</span>
 		</nav>
-		<section ng-if="!ui.connected">
+		<section ng-if="!ui.connected" class="flex centered-items full-height">
 			<form ng-submit="connect()">
-				<input type="text" ng-model="ui.connectHost">
-				<input type="number" ng-model="ui.connectPort">
+				<input type="text" placeholder="Host" ng-model="ui.connectHost">
+				<input type="number" placeholder="Port" ng-model="ui.connectPort">
 				<input type="submit" value="Valider">
 			</form>
 		</section>
-		<section ng-if="ui.connected" class="infos">
+		<section ng-if="ui.connected" class="infos flex">
 			<section ng-if="selectedInfos">
 				<p>[ {{ selectedInfos.x }},{{ selectedInfos.y }} ]</p>
 				<span>Ressources:</span>

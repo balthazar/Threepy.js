@@ -110,7 +110,7 @@ module.exports = function Game() {
 			teams: self.teams.map(function (e) {
 				return {
 					name: e.name,
-					color: self.teamColor[self.teams.indexOf(e) % 9].getHexString(),
+					color: self.teamColor[self.teams.indexOf(e) % 10].getHexString(),
 					players: e.players.map(function (e) {
 						return { nb: e.nb, level: e.level };
 					})
