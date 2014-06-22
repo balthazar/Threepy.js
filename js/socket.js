@@ -9,6 +9,7 @@ module.exports = function Socket(game) {
 	this.client = client;
 	this.game = game;
 	this.connected = false;
+	this.speed = null;
 
 	process.on('uncaughtException', function (e) {
 		if (e.code === 'ECONNREFUSED') {
@@ -62,6 +63,9 @@ module.exports = function Socket(game) {
 			}
 			else if (cmd === 'pbc') {
 				game.broadcast(parseInt(parse[1].substr(1)));
+			}
+			else if (cmd === 'sgt') {
+				self.speed = parseInt(parse[1]);
 			}
 		}
 	});

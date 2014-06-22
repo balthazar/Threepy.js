@@ -25,6 +25,8 @@ angular.module('threepyApp', [])
 			msg        : ''
 		};
 
+		$scope.serverTime
+
 		$scope.selectedInfos = null;
 
 		$scope.ressourcesNames = [
