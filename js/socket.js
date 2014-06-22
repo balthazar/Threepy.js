@@ -78,7 +78,9 @@ module.exports = function Socket(game) {
 	};
 
 	this.changeTime = function (newTime) {
-
+		if (newTime >= 1 && newTime <= 100) {
+			self.client.write('sst '+ newTime +'\n');
+		}
 	};
 
 };

@@ -14,6 +14,7 @@ win.moveTo(300, 200);
 
 var game = new Game(stats);
 var socket = new Socket(game);
+var intervalId;
 
 angular.module('threepyApp', [])
 	.controller('threepyCtrl', function ($scope, $timeout) {
@@ -22,10 +23,9 @@ angular.module('threepyApp', [])
 			connected  : false,
 			connectHost: '127.0.0.1',
 			connectPort: 4040,
+			rangeSpeed : 50,
 			msg        : ''
 		};
-
-		$scope.serverTime
 
 		$scope.selectedInfos = null;
 
@@ -44,11 +44,13 @@ angular.module('threepyApp', [])
 
 					$scope.ui.connected = true;
 					$scope.ui.msg = '';
+					$scope.ui.rangeSpeed = socket.speed;
 
 					game.run();
 
-					setInterval(function () {
+					intervalId = setInterval(function () {
 						$scope.$apply(function () {
+							$scope.serverTime = socket.speed;
 							$scope.selectedInfos = game.selected;
 							$scope.resume = game.resume;
 						});
@@ -67,6 +69,7 @@ angular.module('threepyApp', [])
 			socket = new Socket(game);
 			$scope.ui.connected = false;
 			$scope.ui.msg = '';
+			clearInterval(intervalId);
 		};
 
 		$scope.minimize = function () {
