@@ -56,6 +56,9 @@ angular.module('threepyApp', [])
 							$scope.ui.serverSpeed = socket.speed;
 							$scope.selectedInfos = game.selected;
 							$scope.resume = game.resume;
+							if (!socket.connected) {
+								$scope.disconnect('Lost connection with the server !');
+							}
 						});
 					}, 100);
 				}
@@ -74,7 +77,7 @@ angular.module('threepyApp', [])
 			}, 500);
 		});
 
-		$scope.disconnect = function () {
+		$scope.disconnect = function (msg) {
 			socket.client.destroy();
 
 			stats = new Stats();
@@ -82,7 +85,7 @@ angular.module('threepyApp', [])
 			socket = new Socket(game);
 
 			$scope.ui.connected = false;
-			$scope.ui.msg = '';
+			$scope.ui.msg = (msg) ? msg :'';
 			clearInterval(intervalId);
 		};
 

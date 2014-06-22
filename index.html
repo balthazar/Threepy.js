@@ -42,9 +42,9 @@
 		<section ng-if="ui.connected" class="infos flex">
 			<section class="marged" ng-class="{ borded: selectedInfos || resume }">
 				<p>Commands</p>
-				<button class="danger" ng-click="disconnect()">Disconnect</button>
 				<p>Server speed: {{ ui.serverSpeed }}</p>
 				<input type="range" min="10" max="100" ng-model="ui.rangeSpeed">
+				<button class="danger" ng-click="disconnect()">Disconnect</button>
 			</section>
 			<section ng-if="selectedInfos" class="marged" ng-class="{ borded: selectedInfos && resume }">
 				<p>[ {{ selectedInfos.x }},{{ selectedInfos.y }} ]</p>

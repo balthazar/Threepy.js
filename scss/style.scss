@@ -114,7 +114,8 @@ body {
 	}
 	section {
 		&:first-child {
-			button {
+			input[type="range"], p:first-child {
+				display: block;
 				margin-bottom: 10px;
 			}
 		}

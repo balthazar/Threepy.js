@@ -4,7 +4,7 @@ module.exports = function Socket(game) {
 
 	var self = this;
 
-	var client = new net.connect();
+	var client = new net.Socket();
 
 	this.client = client;
 	this.game = game;
@@ -70,10 +70,14 @@ module.exports = function Socket(game) {
 		}
 	});
 
+	self.client.on('end', function () {
+		self.connected = false;
+	});
+
 	this.connect = function (host, port) {
 		self.client.connect(port, host, function () {
-			self.client.write('GRAPHIC\n');
 			self.connected = true;
+			self.client.write('GRAPHIC\n');
 		});
 	};
 
