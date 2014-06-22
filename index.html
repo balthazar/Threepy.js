@@ -43,7 +43,7 @@
 			<section class="marged" ng-class="{ borded: selectedInfos || resume }">
 				<p>Commands</p>
 				<button class="danger" ng-click="disconnect()">Disconnect</button>
-				<p>Server time: {{ serverTime }}</p>
+				<p>Server speed: {{ ui.serverSpeed }}</p>
 				<input type="range" min="10" max="100" ng-model="ui.rangeSpeed">
 			</section>
 			<section ng-if="selectedInfos" class="marged" ng-class="{ borded: selectedInfos && resume }">

@@ -24,6 +24,7 @@ angular.module('threepyApp', [])
 			connectHost: '127.0.0.1',
 			connectPort: 4040,
 			rangeSpeed : 50,
+			serverSpeed: 50,
 			msg        : ''
 		};
 
@@ -44,13 +45,14 @@ angular.module('threepyApp', [])
 
 					$scope.ui.connected = true;
 					$scope.ui.msg = '';
+
 					$scope.ui.rangeSpeed = socket.speed;
 
 					game.run();
 
 					intervalId = setInterval(function () {
 						$scope.$apply(function () {
-							$scope.serverTime = socket.speed;
+							$scope.ui.serverSpeed = socket.speed;
 							$scope.selectedInfos = game.selected;
 							$scope.resume = game.resume;
 						});
@@ -64,9 +66,12 @@ angular.module('threepyApp', [])
 		};
 
 		$scope.disconnect = function () {
+			socket.client.destroy();
+
 			stats = new Stats();
 			game = new Game(stats);
 			socket = new Socket(game);
+
 			$scope.ui.connected = false;
 			$scope.ui.msg = '';
 			clearInterval(intervalId);
