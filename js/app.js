@@ -15,6 +15,7 @@ win.moveTo(300, 200);
 var game = new Game(stats);
 var socket = new Socket(game);
 var intervalId;
+var timerId;
 
 angular.module('threepyApp', [])
 	.controller('threepyCtrl', function ($scope, $timeout) {
@@ -64,6 +65,14 @@ angular.module('threepyApp', [])
 
 			}, 100);
 		};
+
+		$scope.$watch('ui.rangeSpeed', function (newVal) {
+			$timeout.cancel(timerId);
+			timerId = $timeout(function () {
+				socket.changeTime(newVal);
+				$scope.serverSpeed = newVal;
+			}, 500);
+		});
 
 		$scope.disconnect = function () {
 			socket.client.destroy();
