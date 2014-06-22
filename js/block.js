@@ -40,6 +40,7 @@ module.exports = function Block(map, x, y) {
 	var elevateEffect = 0;
 	var blockEffect = false;
 	var elevateMesh = null;
+	var elevateRes = -1;
 
 	//elevateShader
 	var elevateMaterial = new THREE.ShaderMaterial({
@@ -63,6 +64,7 @@ module.exports = function Block(map, x, y) {
 
 		if (self.elevate) {
 			if (elevateEffect < 40 && !blockEffect) {
+				elevateMaterial.uniforms.m_Color.value = new THREE.Vector4(!elevateRes, elevateRes === 1, elevateRes === -1, 1 );
 				elevateMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.1), elevateMaterial.clone());
 				elevateMesh.position.x = self.center.x;
 				elevateMesh.position.y = self.center.y;
@@ -91,7 +93,11 @@ module.exports = function Block(map, x, y) {
 	};
 
 	this.elevateResult = function (res) {
-		self.elevate = false;
+		elevateRes = res;
+		setTimeout(function () {
+			self.elevate = false;
+			elevateRes = -1;
+		}, 1500);
 	};
 
 	function initBlock() {

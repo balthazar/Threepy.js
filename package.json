@@ -1,6 +1,6 @@
 {
-	"name"           : "Zabylon",
-	"version"        : "0.1.0",
+	"name"           : "Threepy.js",
+	"version"        : "0.5.0",
 	"main"           : "index.html",
 	"repository"     : {
 		"type": "git",

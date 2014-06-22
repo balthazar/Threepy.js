@@ -1,10 +1,5 @@
 var net = require('net');
 
-//Error caught
-process.on('uncaughtException', function (e) {
-	//console.log(e);
-});
-
 module.exports = function Socket(game) {
 
 	var self = this;
@@ -13,6 +8,14 @@ module.exports = function Socket(game) {
 
 	this.client = client;
 	this.game = game;
+	this.connected = false;
+	this.speed = null;
+
+	process.on('uncaughtException', function (e) {
+		if (e.code === 'ECONNREFUSED') {
+			self.connected = false;
+		}
+	});
 
 	self.client.on('data', function (data) {
 		var res = data.toString().split('\n');
@@ -37,6 +40,9 @@ module.exports = function Socket(game) {
 			else if (cmd === 'plv') {
 				game.changeLevel(parse);
 			}
+			else if (cmd === 'enw') {
+				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
+			}
 			else if (cmd === 'pdi') {
 				game.removePlayer(parse);
 			}
@@ -46,11 +52,7 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pie') {
 				game.map.resultElevate(parse);
 			}
-			else if (cmd === 'enw') {
-				game.newEgg(parseInt(parse[1].substr(1)), parseInt(parse[2].substr(1)), parseInt(parse[3]), parseInt(parse[4]));
-			}
 			else if (cmd === 'eht') {
-				//maybe useless
 				game.hatchEgg(parseInt(parse[1].substr(1)));
 			}
 			else if (cmd === 'ebo') {
@@ -62,15 +64,27 @@ module.exports = function Socket(game) {
 			else if (cmd === 'pbc') {
 				game.broadcast(parseInt(parse[1].substr(1)));
 			}
+			else if (cmd === 'sgt') {
+				self.speed = parseInt(parse[1]);
+			}
 		}
 	});
 
-	this.connect = function (host, port) {
+	self.client.on('end', function () {
+		self.connected = false;
+	});
 
+	this.connect = function (host, port) {
 		self.client.connect(port, host, function () {
+			self.connected = true;
 			self.client.write('GRAPHIC\n');
 		});
+	};
 
+	this.changeTime = function (newTime) {
+		if (newTime >= 1 && newTime <= 100) {
+			self.client.write('sst '+ newTime +'\n');
+		}
 	};
 
 };

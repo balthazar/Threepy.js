@@ -169,6 +169,7 @@ module.exports = function Game(stats) {
 		if (player) {
 			player.setLevel(parseInt(array[2]));
 		}
+		self.reloadData();
 	};
 
 	this.removePlayer = function (array) {
@@ -230,9 +231,15 @@ module.exports = function Game(stats) {
 	};
 
 	this.run = function () {
+
+		if (!document.getElementsByTagName('canvas').length) {
+			document.body.appendChild(renderer.domElement);
+		}
+
 		stats.setMode(1);
-		document.body.appendChild(stats.domElement);
-		document.body.appendChild(renderer.domElement);
+		if (!document.getElementById('stats')) {
+			document.body.appendChild(stats.domElement);
+		}
 		render();
 	};
 
@@ -316,14 +323,11 @@ module.exports = function Game(stats) {
 	};
 
 	var mouseMove = function (event) {
-		event.preventDefault();
 		mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
 	};
 
-	var mouseUp = function (event) {
-		event.preventDefault();
+	var mouseUp = function () {
 		isMouseDown = false;
 	};
 

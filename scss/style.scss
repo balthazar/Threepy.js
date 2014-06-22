@@ -1,6 +1,7 @@
 @import 'compass/css3';
 @import 'compass/reset';
 @import 'compass/css3/transition';
+@import url('fonts/raleway.woff');
 
 * {
 	outline: none;
@@ -13,10 +14,27 @@ html, body {
 	width: 100%;
 	background-color: #000000;
 	@include user-select(none);
+	font-family: 'Raleway', sans-serif;
 }
 
-input, select, textarea, button, i {
+input, select, textarea, button {
 	@include user-select(text);
+	font-family: 'Raleway', sans-serif;
+}
+
+button, input[type="range"], input[type="button"], input[type="submit"] {
+	cursor: pointer;
+}
+
+button.danger {
+	background: rgba(255, 16, 16, .7);
+	border: 1px solid rgb(165, 0, 0);
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: white;
+	&:hover {
+		background-color: rgba(255, 16, 16, .8);
+	}
 }
 
 .drag {
@@ -25,6 +43,22 @@ input, select, textarea, button, i {
 
 .nodrag {
 	-webkit-app-region: no-drag;
+}
+
+.flex {
+	display: flex;
+	&.centered-items {
+		align-items: center;
+	}
+}
+
+.full-height {
+	height: 100%;
+}
+
+.intro {
+	background: url('../img/back.jpg');
+	background-size: cover;
 }
 
 body {
@@ -43,13 +77,12 @@ body {
 			width: 300px;
 			input {
 				width: 100%;
-				background-color: transparent;
+				background-color: rgba(black, .6);
 				color: white;
 				border: 1px solid rgba(white, .3);
 				padding: 10px 10px;
 				@include border-radius(2px);
 				&[type="submit"] {
-					cursor: pointer;
 					&:hover {
 						background-color: rgba(70, 70, 177, .5);;
 					}
@@ -58,19 +91,13 @@ body {
 					border-color: rgba(white, .6);
 				}
 			}
+			p {
+				text-align: center;
+				font-size: 13px;
+				padding: 10px;
+			}
 		}
 	}
-}
-
-.flex {
-	display: flex;
-	&.centered-items {
-		align-items: center;
-	}
-}
-
-.full-height {
-	height: 100%;
 }
 
 /* Infobox */
@@ -80,19 +107,19 @@ body {
 	padding: 20px;
 	top: 20px;
 	left: 20px;
-	font-family: Arial;
 	font-size: 13px;
 	ul {
 		list-style-type: none;
 		padding: 0;
 	}
 	section {
-		&.selectedinfos {
-			padding-right: 20px;
-			border-right: 1px solid rgba(white, .2);
-		}
 		&:first-child {
-			margin-right: 20px;
+			input[type="range"], p:first-child {
+				display: block;
+				margin-bottom: 10px;
+			}
+		}
+		&:nth-child(2) {
 			> * {
 				margin-bottom : 10px;
 			}
@@ -115,6 +142,13 @@ body {
 					}
 				}
 			}
+		}
+		&.borded {
+			padding-right: 20px;
+			border-right: 1px solid rgba(white, .2);
+		}
+		&.marged {
+			margin-right: 20px;
 		}
 	}
 }
