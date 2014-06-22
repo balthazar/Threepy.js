@@ -59,6 +59,14 @@ angular.module('threepyApp', [])
 			}, 100);
 		};
 
+		$scope.disconnect = function () {
+			stats = new Stats();
+			game = new Game(stats);
+			socket = new Socket(game);
+			$scope.ui.connected = false;
+			$scope.ui.msg = '';
+		};
+
 		$scope.minimize = function () {
 			win.minimize();
 		};
