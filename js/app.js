@@ -18,7 +18,7 @@ var intervalId;
 var timerId;
 
 angular.module('threepyApp', [])
-	.controller('threepyCtrl', function ($scope, $timeout) {
+	.controller('threepyCtrl', function ($scope, $timeout, $interval) {
 
 		$scope.ui = {
 			connected  : false,
