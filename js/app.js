@@ -18,7 +18,7 @@ var intervalId;
 var timerId;
 
 angular.module('threepyApp', [])
-	.controller('threepyCtrl', function ($scope, $timeout) {
+	.controller('threepyCtrl', function ($scope, $timeout, $interval) {
 
 		$scope.ui = {
 			connected  : false,
@@ -51,15 +51,13 @@ angular.module('threepyApp', [])
 
 					game.run();
 
-					intervalId = setInterval(function () {
-						$scope.$apply(function () {
-							$scope.ui.serverSpeed = socket.speed;
-							$scope.selectedInfos = game.selected;
-							$scope.resume = game.resume;
-							if (!socket.connected) {
-								$scope.disconnect('Lost connection with the server !');
-							}
-						});
+					intervalId = $interval(function () {
+						$scope.ui.serverSpeed = socket.speed;
+						$scope.selectedInfos = game.selected;
+						$scope.resume = game.resume;
+						if (!socket.connected) {
+							$scope.disconnect('Lost connection with the server !');
+						}
 					}, 100);
 				}
 				else {
@@ -86,7 +84,7 @@ angular.module('threepyApp', [])
 
 			$scope.ui.connected = false;
 			$scope.ui.msg = (msg) ? msg :'';
-			clearInterval(intervalId);
+			$interval.cancel(intervalId);
 		};
 
 		$scope.minimize = function () {
