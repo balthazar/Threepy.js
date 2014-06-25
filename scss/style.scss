@@ -2,6 +2,7 @@
 @import 'compass/reset';
 @import 'compass/css3/transition';
 @import url('fonts/raleway.woff');
+@import url('fonts/sega.tff');
 
 * {
 	outline: none;
@@ -59,6 +60,11 @@ button.danger {
 .intro {
 	background: url('../img/back.jpg');
 	background-size: cover;
+}
+
+.win {
+	font-family: 'Sega';
+	font-size: 30px;
 }
 
 body {

@@ -67,6 +67,9 @@ module.exports = function Socket(game) {
 			else if (cmd === 'sgt') {
 				self.speed = parseInt(parse[1]);
 			}
+			else if (cmd === 'seg') {
+
+			}
 		}
 	});
 
