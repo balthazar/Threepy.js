@@ -275,7 +275,7 @@ module.exports = function Game(stats) {
 			oldOutline = object.outline;
 		}
 
-		requestId = window.requestAnimationFrame(render, canvas);
+		requestId = window.requestAnimationFrame(render);
 		renderer.render(scene, camera);
 		stats.update();
 	};
