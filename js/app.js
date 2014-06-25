@@ -64,7 +64,7 @@ angular.module('threepyApp', [])
 					$scope.ui.msg = 'Error during server connection.';
 				}
 
-			}, 100);
+			}, 250);
 		};
 
 		$scope.$watch('ui.rangeSpeed', function (newVal) {
