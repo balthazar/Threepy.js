@@ -64,13 +64,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 6, ../scss/style.scss */
+@font-face {
+  font-family: 'Sega';
+  src: url("fonts/sega.woff") format("woff"), url("fonts/sega.ttf") format("truetype");
+}
+/* line 12, ../scss/style.scss */
 * {
   outline: none;
   box-sizing: border-box;
 }
 
-/* line 11, ../scss/style.scss */
+/* line 17, ../scss/style.scss */
 html, body {
   overflow: hidden;
   height: 100%;
@@ -83,7 +87,7 @@ html, body {
   font-family: 'Raleway', sans-serif;
 }
 
-/* line 20, ../scss/style.scss */
+/* line 26, ../scss/style.scss */
 input, select, textarea, button {
   -moz-user-select: text;
   -ms-user-select: text;
@@ -92,12 +96,12 @@ input, select, textarea, button {
   font-family: 'Raleway', sans-serif;
 }
 
-/* line 25, ../scss/style.scss */
+/* line 31, ../scss/style.scss */
 button, input[type="range"], input[type="button"], input[type="submit"] {
   cursor: pointer;
 }
 
-/* line 29, ../scss/style.scss */
+/* line 35, ../scss/style.scss */
 button.danger {
   background: rgba(255, 16, 16, 0.7);
   border: 1px solid #a50000;
@@ -105,64 +109,80 @@ button.danger {
   border-radius: 2px;
   color: white;
 }
-/* line 35, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
 button.danger:hover {
   background-color: rgba(255, 16, 16, 0.8);
 }
 
-/* line 40, ../scss/style.scss */
+/* line 46, ../scss/style.scss */
 .drag {
   -webkit-app-region: drag;
 }
 
-/* line 44, ../scss/style.scss */
+/* line 50, ../scss/style.scss */
 .nodrag {
   -webkit-app-region: no-drag;
 }
 
-/* line 48, ../scss/style.scss */
+/* line 54, ../scss/style.scss */
 .flex {
   display: flex;
 }
-/* line 50, ../scss/style.scss */
+/* line 56, ../scss/style.scss */
 .flex.centered-items {
   align-items: center;
 }
 
-/* line 55, ../scss/style.scss */
+/* line 61, ../scss/style.scss */
 .full-height {
   height: 100%;
 }
 
-/* line 59, ../scss/style.scss */
+/* line 65, ../scss/style.scss */
 .intro {
   background: url("../img/back.jpg");
   background-size: cover;
 }
 
-/* line 64, ../scss/style.scss */
+/* line 70, ../scss/style.scss */
+.win {
+  font-family: 'Sega';
+  font-size: 200px;
+  color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 100px;
+  width: 900px;
+  line-height: 1.1em;
+}
+
+/* line 85, ../scss/style.scss */
 body {
   margin: 0;
 }
-/* line 66, ../scss/style.scss */
+/* line 87, ../scss/style.scss */
 body > nav {
   position: fixed;
 }
-/* line 69, ../scss/style.scss */
+/* line 90, ../scss/style.scss */
 body > section {
   color: white;
 }
-/* line 71, ../scss/style.scss */
+/* line 92, ../scss/style.scss */
 body > section canvas {
   height: 100%;
 }
-/* line 74, ../scss/style.scss */
+/* line 95, ../scss/style.scss */
 body > section form {
   padding: 20px;
   margin: 0 auto;
   width: 300px;
 }
-/* line 78, ../scss/style.scss */
+/* line 99, ../scss/style.scss */
 body > section form input {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
@@ -173,15 +193,15 @@ body > section form input {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-/* line 86, ../scss/style.scss */
+/* line 107, ../scss/style.scss */
 body > section form input[type="submit"]:hover {
   background-color: rgba(70, 70, 177, 0.5);
 }
-/* line 90, ../scss/style.scss */
+/* line 111, ../scss/style.scss */
 body > section form input:hover {
   border-color: rgba(255, 255, 255, 0.6);
 }
-/* line 94, ../scss/style.scss */
+/* line 115, ../scss/style.scss */
 body > section form p {
   text-align: center;
   font-size: 13px;
@@ -189,7 +209,7 @@ body > section form p {
 }
 
 /* Infobox */
-/* line 104, ../scss/style.scss */
+/* line 125, ../scss/style.scss */
 .infos {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.6);
@@ -198,51 +218,51 @@ body > section form p {
   left: 20px;
   font-size: 13px;
 }
-/* line 111, ../scss/style.scss */
+/* line 132, ../scss/style.scss */
 .infos ul {
   list-style-type: none;
   padding: 0;
 }
-/* line 117, ../scss/style.scss */
+/* line 138, ../scss/style.scss */
 .infos section:first-child input[type="range"], .infos section:first-child p:first-child {
   display: block;
   margin-bottom: 10px;
 }
-/* line 123, ../scss/style.scss */
+/* line 144, ../scss/style.scss */
 .infos section:nth-child(2) > * {
   margin-bottom: 10px;
 }
-/* line 126, ../scss/style.scss */
+/* line 147, ../scss/style.scss */
 .infos section:nth-child(2) ul {
   padding-top: 5px;
 }
-/* line 132, ../scss/style.scss */
+/* line 153, ../scss/style.scss */
 .infos section:last-child .teams .team {
   min-width: 50px;
   margin-bottom: 5px;
 }
-/* line 135, ../scss/style.scss */
+/* line 156, ../scss/style.scss */
 .infos section:last-child .teams .team > * {
   margin-right: 5px;
 }
-/* line 138, ../scss/style.scss */
+/* line 159, ../scss/style.scss */
 .infos section:last-child .teams .team .color {
   width: 15px;
   height: 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-/* line 146, ../scss/style.scss */
+/* line 167, ../scss/style.scss */
 .infos section.borded {
   padding-right: 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* line 150, ../scss/style.scss */
+/* line 171, ../scss/style.scss */
 .infos section.marged {
   margin-right: 20px;
 }
 
 /* Navbar with buttons */
-/* line 157, ../scss/style.scss */
+/* line 178, ../scss/style.scss */
 nav {
   z-index: 100;
   position: absolute;
@@ -257,11 +277,11 @@ nav {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 167, ../scss/style.scss */
+/* line 188, ../scss/style.scss */
 nav:hover {
   opacity: 1.0;
 }
-/* line 170, ../scss/style.scss */
+/* line 191, ../scss/style.scss */
 nav a {
   z-index: 2000;
   content: '';
@@ -286,33 +306,33 @@ nav a {
   color: #CCC;
   opacity: 0.6;
 }
-/* line 188, ../scss/style.scss */
+/* line 209, ../scss/style.scss */
 nav a.hide {
   right: 32px;
 }
-/* line 190, ../scss/style.scss */
+/* line 211, ../scss/style.scss */
 nav a.hide:hover {
   background-color: #d0a00f;
 }
-/* line 194, ../scss/style.scss */
+/* line 215, ../scss/style.scss */
 nav a.resize {
   right: 20px;
 }
-/* line 196, ../scss/style.scss */
+/* line 217, ../scss/style.scss */
 nav a.resize:hover {
   background-color: #0fb00f;
 }
-/* line 201, ../scss/style.scss */
+/* line 222, ../scss/style.scss */
 nav a.close:hover {
   background-color: #b00f0f;
 }
-/* line 205, ../scss/style.scss */
+/* line 226, ../scss/style.scss */
 nav a:hover {
   opacity: 1.0;
 }
 
 /* Stats */
-/* line 212, ../scss/style.scss */
+/* line 233, ../scss/style.scss */
 #stats {
   position: absolute;
   bottom: 5px;

@@ -10,6 +10,7 @@ module.exports = function Socket(game) {
 	this.game = game;
 	this.connected = false;
 	this.speed = null;
+	this.win = null;
 
 	process.on('uncaughtException', function (e) {
 		if (e.code === 'ECONNREFUSED') {
@@ -66,6 +67,9 @@ module.exports = function Socket(game) {
 			}
 			else if (cmd === 'sgt') {
 				self.speed = parseInt(parse[1]);
+			}
+			else if (cmd === 'seg') {
+				self.win = parse[1];
 			}
 		}
 	});

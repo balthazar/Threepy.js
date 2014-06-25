@@ -3,6 +3,12 @@
 @import 'compass/css3/transition';
 @import url('fonts/raleway.woff');
 
+@font-face {
+	font-family: 'Sega';
+	src:url('fonts/sega.woff') format('woff'),
+		url('fonts/sega.ttf') format('truetype')
+}
+
 * {
 	outline: none;
 	box-sizing: border-box;
@@ -59,6 +65,21 @@ button.danger {
 .intro {
 	background: url('../img/back.jpg');
 	background-size: cover;
+}
+
+.win {
+	font-family: 'Sega';
+	font-size: 200px;
+	color: white;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	top: 100px;
+	width: 900px;
+	line-height: 1.1em;
 }
 
 body {

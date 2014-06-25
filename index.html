@@ -31,7 +31,8 @@
 				<a class="close nodrag" ng-click="quit()"></a>
 			</span>
 		</nav>
-		<section ng-if="!ui.connected" class="flex centered-items full-height intro">
+		<h1 class="win" ng-if="ui.win">TEAM {{ ui.win }} WINS</h1>
+		<section ng-if="!ui.connected && !ui.win" class="flex centered-items full-height intro">
 			<form ng-submit="connect()">
 				<input type="text" placeholder="Host" ng-model="ui.connectHost">
 				<input type="number" placeholder="Port" ng-model="ui.connectPort">
@@ -39,7 +40,7 @@
 				<p>{{ ui.msg }}</p>
 			</form>
 		</section>
-		<section ng-if="ui.connected" class="infos flex">
+		<section ng-if="ui.connected && !ui.win" class="infos flex">
 			<section class="marged" ng-class="{ borded: selectedInfos || resume }">
 				<p>Commands</p>
 				<p>Server speed: {{ ui.serverSpeed }}</p>

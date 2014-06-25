@@ -5,6 +5,7 @@ module.exports = function Game(stats) {
 
 	var self = this;
 	var window = global.window;
+	var requestId = null;
 
 	/*
 	 ** Three
@@ -27,7 +28,6 @@ module.exports = function Game(stats) {
 	//Controls
 	var controls = new THREE.OrbitControls(camera, renderer.domElement);
 	var mouse = new THREE.Vector2();
-	var isMouseDown;
 
 	// lights
 	scene.add(new THREE.AmbientLight(0x444444));
@@ -243,6 +243,13 @@ module.exports = function Game(stats) {
 		render();
 	};
 
+	this.stop = function () {
+		if (requestId) {
+			window.cancelAnimationFrame(requestId);
+			requestId = null;
+		}
+	};
+
 	var render = function () {
 
 		var vector = new THREE.Vector3(mouse.x, mouse.y, 1);
@@ -251,15 +258,6 @@ module.exports = function Game(stats) {
 
 		if (self.map) {
 			self.map.launchAnimation();
-		}
-
-		if (isMouseDown) {
-			/*
-			 camera.position.x = camera.position.x * Math.cos(0.02) + camera.position.z * Math.sin(0.02);
-			 camera.position.y = camera.position.y * Math.cos(0.02) - camera.position.z * Math.sin(0.02);
-			 camera.lookAt(scene.position);
-			 console.log(camera);
-			 */
 		}
 
 		camera.rotation.y = 0;
@@ -277,7 +275,7 @@ module.exports = function Game(stats) {
 			oldOutline = object.outline;
 		}
 
-		window.requestAnimationFrame(render);
+		requestId = window.requestAnimationFrame(render);
 		renderer.render(scene, camera);
 		stats.update();
 	};
@@ -289,8 +287,6 @@ module.exports = function Game(stats) {
 	};
 
 	var mouseDown = function (event) {
-
-		isMouseDown = true;
 
 		var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1, 0.5);
 		projector.unprojectVector(vector, camera);
@@ -327,13 +323,8 @@ module.exports = function Game(stats) {
 		mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 	};
 
-	var mouseUp = function () {
-		isMouseDown = false;
-	};
-
 	//listeners
 	document.addEventListener('mousedown', mouseDown, false);
-	document.addEventListener('mouseup', mouseUp, false);
 	document.addEventListener('mousemove', mouseMove, false);
 	window.addEventListener('resize', windowResize, false);
 };
